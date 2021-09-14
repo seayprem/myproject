@@ -106,7 +106,7 @@ if(empty($_SESSION['login'])) {
 					<label class="form-label">กรุณาเลือกสาขาวิชา</label>
 					<select name="class_department" class="form-select">
 						<option selected disabled>-- กรุณาเลือกสาขาวิชา --</option>
-						<option value="" >2564</option>
+						<option value="" >เทคโนโลยีสารสนเทศ</option>
 					</select>
 				</div>
 
