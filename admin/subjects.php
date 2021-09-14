@@ -107,9 +107,9 @@ include('../config/db.php');
 					<table class="table">
 						<thead>
 							<tr class="text-center">
-								<th>รหัสประจำตัว</th>
-								<th>ชื่อจริง</th>
-								<th>นามสกุล</th>
+								<th>รหัสวิชา</th>
+								<th>ชื่อวิชา</th>
+								<th>หน่วยกิต</th>
 								<th colspan="2">จัดการ</th>
 							</tr>
 						</thead>
