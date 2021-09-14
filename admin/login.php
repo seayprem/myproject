@@ -1,3 +1,9 @@
+<?php 
+session_start();
+if(!empty($_SESSION['officer'])) {
+	header("Location: index.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,8 +33,8 @@
 		<div class="row justify-content-md-center">
 			<div class="card">
 				<div class="card-body">
-					<h5 class="card-title text-center">ลงชื่อเข้าใช้</h5>
-					<form action="controller/auth/checkLogin.php" method="POST">
+					<h5 class="card-title text-center">ลงชื่อเข้าใช้ ( เฉพาะเจ้าหน้าที่ )</h5>
+					<form action="controller/checkLogin.php" method="POST">
 						<label for="username" class="form-label">ชื่อผู้ใช้งาน</label>
 						<div class="input-group mb-3">
 							<span class="input-group-text" id="addon-username"><i class="fas fa-user"></i></span>
@@ -47,7 +53,7 @@
 					</form>
 					<div class="text-right">
 						<br>
-						<a href="admin/login.php" class="text-is">เฉพาะเจ้าหน้าที่</a>
+						<a href="../index.php" class="text-is">กลับไปหน้าหลัก</a>
 					</div>
 				</div>
 			</div>

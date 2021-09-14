@@ -13,12 +13,20 @@
 		<!-- Menu -->
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ms-auto">
+				<?php 
+				if(isset($_SESSION['officer'])) {
+				?>
 				<li class="nav-item">
-					<a href="#" class="nav-link"><i class="fas fa-user"></i> สวัสดีคุณ แอดมิน</a>
+					<a href="#" class="nav-link"><i class="fas fa-user"></i> สวัสดีคุณ <?= $_SESSION['officer']; ?></a>
 				</li>
 				<li class="nav-item">
 					<a href="logout.php" class="nav-link"><i class="fas fa-sign-in-alt"></i> ออกจากระบบ</a>
 				</li>
+				<?php } else { ?>
+					<li class="nav-item">
+						<a href="login.php" class="nav-link"><i class="fas fa-sign-in-alt"></i> ลงชื่อเข้าใช้</a>
+					</li>
+				<?php } ?>
 			</ul>
 		</div>
 		<!-- Menu -->

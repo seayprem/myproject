@@ -1,3 +1,9 @@
+<?php 
+session_start();
+if(empty($_SESSION['officer'])) {
+	header("Location: login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
