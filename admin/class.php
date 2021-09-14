@@ -84,9 +84,24 @@ include('../config/db.php');
 			$edit_sql = "SELECT * FROM students_class WHERE class_id = '".$edit_id."'";
 			$edit_query = mysqli_query($conn, $edit_sql);
 			$edit_row = mysqli_fetch_array($edit_query);
+
+			if(isset($_POST['edit'])) {
+				$class_id = $_POST['class_id'];
+				$class_amount = $_POST['class_amount'];
+				$class_year = $_POST['class_year'];
+				$sub_id = $_POST['sub_id'];
+
+				$update_sql = "UPDATE students_class SET class_id = '".$class_id."', class_amount = '".$class_amount."', class_year = '".$class_year."' WHERE class_id = '".$edit_id."' ";
+				$update_query = mysqli_query($conn, $update_sql);
+				if($update_query) {
+					header("Location: class.php");
+				} else {
+					echo '<script>alert("ล้มเหลว กรุณาลองใหม่อีกครั้ง"); window.location.href="class.php"</script>';
+				}
+			}
 		
 		?>
-		<form action="#" method="POST">
+		<form action="class.php?edit=<?= $edit_row['class_id']; ?>" method="POST">
 		<div class="mb-3">
 				<label class="form-label">รหัสห้องเรียน</label>
 				<input type="text" class="form-control" name="class_id" placeholder="กรุณาป้อนรหัสห้องเรียน" value="<?= $edit_row['class_id']; ?>" required>
@@ -122,7 +137,7 @@ include('../config/db.php');
 			</div>
 			<div class="mb-3">
 				<div class="d-grid 2-gap">
-					<input type="submit" name="add" class="btn btn-is" value="เพิ่มข้อมูล">
+					<input type="submit" name="edit" class="btn btn-is" value="แก้ไขข้อมูล">
 				</div>
 			</div>
 			<div class="d-grid 2-gap">
