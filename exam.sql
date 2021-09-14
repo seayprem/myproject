@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2021 at 06:04 AM
+-- Generation Time: Sep 14, 2021 at 04:36 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -41,7 +41,29 @@ CREATE TABLE `officers` (
 --
 
 INSERT INTO `officers` (`officer_id`, `officer_user`, `officer_pass`, `officer_fname`, `officer_lname`, `officer_tel`) VALUES
-('admin', 'admin', 'eb453f1d8d7be0f1d3eb1213ce3904f63467171f', 'Admin', 'Manage', 1111111111);
+('Administrator', 'admin', 'eb453f1d8d7be0f1d3eb1213ce3904f63467171f', 'administrator', 'system', 123456789);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sent_exam`
+--
+
+CREATE TABLE `sent_exam` (
+  `sent_no` int(15) NOT NULL,
+  `sent_term` int(2) DEFAULT NULL,
+  `sent_year` int(5) DEFAULT NULL,
+  `sent_time_exam` int(5) DEFAULT NULL,
+  `sent_date_exam` int(10) DEFAULT NULL,
+  `sent_answersheet` varchar(20) DEFAULT NULL,
+  `sent_twopage_book` varchar(20) DEFAULT NULL,
+  `sent_fourpage_book` varchar(20) DEFAULT NULL,
+  `sent_single_copy` varchar(20) DEFAULT NULL,
+  `sent_duplex_copy` varchar(20) DEFAULT NULL,
+  `sent_num_page` int(10) DEFAULT NULL,
+  `teacher_id` varchar(15) DEFAULT NULL,
+  `sub_id` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -62,7 +84,7 @@ CREATE TABLE `students_class` (
 
 INSERT INTO `students_class` (`class_id`, `class_amount`, `class_year`, `sub_id`) VALUES
 ('BC3/2A', 41, 3, '01-406-011-133'),
-('BC3/2B', 41, 3, '01-406-011-131');
+('BC3/2B', 42, 3, '01-406-011-131');
 
 -- --------------------------------------------------------
 
@@ -87,8 +109,20 @@ INSERT INTO `subjects` (`sub_id`, `sub_name`, `sub_credit`) VALUES
 ('01-406-011-133', 'ระบบจัดการฐานข้อมูล', 2),
 ('01-406-011-134', 'ปฏิบัติการระบบจัดการฐานข้อมูล', 1),
 ('01-406-013-137', 'การเขียนโปรแกรมเว็บแบบพลวัติ', 2),
-('01-406-013-138', 'ปฏิบัติการการเขียนโปรแกรมเว็บแบบพลวัติ', 1),
-('awd', 'awd', 2);
+('01-406-013-138', 'ปฏิบัติการการเขียนโปรแกรมเว็บแบบพลวัติ', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `take_exam`
+--
+
+CREATE TABLE `take_exam` (
+  `take_no` int(15) NOT NULL,
+  `take_date` int(10) DEFAULT NULL,
+  `officer_id` varchar(15) DEFAULT NULL,
+  `sent_no` int(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -124,6 +158,14 @@ ALTER TABLE `officers`
   ADD PRIMARY KEY (`officer_id`);
 
 --
+-- Indexes for table `sent_exam`
+--
+ALTER TABLE `sent_exam`
+  ADD PRIMARY KEY (`sent_no`),
+  ADD KEY `teacher_id` (`teacher_id`),
+  ADD KEY `sub_id` (`sub_id`);
+
+--
 -- Indexes for table `students_class`
 --
 ALTER TABLE `students_class`
@@ -137,6 +179,14 @@ ALTER TABLE `subjects`
   ADD PRIMARY KEY (`sub_id`);
 
 --
+-- Indexes for table `take_exam`
+--
+ALTER TABLE `take_exam`
+  ADD PRIMARY KEY (`take_no`),
+  ADD KEY `officer_id` (`officer_id`),
+  ADD KEY `sent_no` (`sent_no`);
+
+--
 -- Indexes for table `teachers`
 --
 ALTER TABLE `teachers`
@@ -147,10 +197,24 @@ ALTER TABLE `teachers`
 --
 
 --
+-- Constraints for table `sent_exam`
+--
+ALTER TABLE `sent_exam`
+  ADD CONSTRAINT `sent_exam_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teacher_id`),
+  ADD CONSTRAINT `sent_exam_ibfk_2` FOREIGN KEY (`sub_id`) REFERENCES `subjects` (`sub_id`);
+
+--
 -- Constraints for table `students_class`
 --
 ALTER TABLE `students_class`
   ADD CONSTRAINT `students_class_ibfk_1` FOREIGN KEY (`sub_id`) REFERENCES `subjects` (`sub_id`);
+
+--
+-- Constraints for table `take_exam`
+--
+ALTER TABLE `take_exam`
+  ADD CONSTRAINT `take_exam_ibfk_1` FOREIGN KEY (`officer_id`) REFERENCES `officers` (`officer_id`),
+  ADD CONSTRAINT `take_exam_ibfk_2` FOREIGN KEY (`sent_no`) REFERENCES `sent_exam` (`sent_no`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
