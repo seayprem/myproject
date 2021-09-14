@@ -1,0 +1,77 @@
+/* Link font from google */
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap');
+/* Link font from google */
+
+/* Font website */
+* {
+	font-family: 'Prompt', sans-serif;
+}
+/* Font website */
+
+/* background color */
+body {
+	background-color: #f2f2f2 !important;
+	min-height: 100vh;
+}
+/* background color */
+
+/* background navbar */
+.bg-is {
+	background: #f271cf;
+}
+/* background navbar */
+
+nav.navbar {
+	padding: 1rem 1.2rem;
+}
+
+/* navbar brand */
+.navbar-brand {
+	color: #fff !important;
+}
+/* navbar brand */
+
+
+/* navbar link */
+a.nav-link {
+	color: white !important;
+}
+
+a.nav-link:hover {
+	color: #000 !important;
+}
+/* navbar link */
+
+/* text-color is */
+.text-is {
+	color: #f271cf;
+}
+/* text-color is */
+
+/* button color */
+.btn-is {
+	background: #f271cf !important;
+	color: white !important;
+}
+
+.btn-is:hover {
+	opacity: 80%;
+}
+/* button color */
+
+.sticky-footer {
+	position: sticky;
+	top: 100%;
+}
+
+/* bg footer */
+.bg-charcoal {
+	background: #333333;
+}
+/* bg footer */
+
+/* text position */
+.text-right {
+	text-align: right;
+}
+/* text position */

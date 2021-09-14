@@ -1,0 +1,141 @@
+<?php 
+include('../config/db.php');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ADMIN</title>
+	<!-- CSS -->
+	<?php include('includes/css.inc.php'); ?>
+	<!-- Javascript -->
+	<?php include('includes/js.inc.php'); ?>
+</head>
+<body>
+	
+	<!-- navbar -->
+	<?php include('includes/navbar.inc.php'); ?>
+
+	<!-- side bar -->
+	<?php include('includes/sidebarContentTop.inc.php'); ?>
+
+	<div class="col py-3">
+		<h1>รายวิชา</h1>
+		<hr>
+
+		<div class="text-right">
+			<a href="subjects.php?show=add" class="btn btn-is">เพิ่มข้อมูล</a>
+		</div>
+
+		<!-- ADD -->
+		<?php if(isset($_GET['show']) == "add") { ?>
+			<form action="controller/subjectAdd.php" method="POST">
+				<div class="mb-3">
+					<label class="form-label">รหัสวิชา</label>
+					<input type="text" name="sub_id" class="form-control" placeholder="กรุณาป้อนรหัสวิชา" required>
+				</div>
+				<div class="mb-3">
+					<label class="form-label">ชื่อวิชา</label>
+					<input type="text" name="sub_name" class="form-control" placeholder="กรุณาป้อนชื่อวิชา" required>
+				</div>
+				<div class="mb-3">
+					<label class="form-label">หน่วยกิต</label>
+					<input type="number" name="sub_credit" class="form-control" value="0" placeholder="กรุณาป้อนหน่วยกิต" required>
+				</div>
+				<div class="d-grid gap-2 mt-2">
+					<input type="submit" name="add" class="btn btn-is" value="เพิ่มข้อมูล">
+				</div>
+				<div class="d-grid gap-2 mt-2">
+					<a href="subjects.php" class="btn btn-danger">ยกเลิก</a>
+				</div>
+			</form>
+			<br><br>
+			<?php } ?>
+
+			<!-- EDIT -->
+			<?php if(isset($_GET['edit'])) { 
+				$id = $_GET['edit'];
+
+				$edit_sql = "SELECT * FROM subjects WHERE sub_id = '".$id."'";
+				$edit_query = mysqli_query($conn, $edit_sql);
+				$edit_row = mysqli_fetch_array($edit_query);
+
+				
+
+				if(isset($_POST['edit'])) {
+					$update_sub_id = $_POST['sub_id'];
+					$update_sub_name = $_POST['sub_name'];
+					$update_sub_credit = $_POST['sub_credit'];
+					$update_sql = "UPDATE subjects SET sub_id = '".$update_sub_id."', sub_name = '".$update_sub_name."' , sub_credit = '".$update_sub_credit."' WHERE sub_id = '".$id."' ";
+					$update_query = mysqli_query($conn, $update_sql);
+					if($update_query) {
+						header("Location: subjects.php");
+					} else {
+						echo '<script>alert("ล้มเหลว กรุณาลองใหม่อีกครั้ง"); window.location.href="../subjects.php"</script>';
+					}
+				}
+				?>
+			
+			<form action="subjects.php?edit=<?= $edit_row['sub_id']; ?>" method="POST">
+				<div class="mb-3">
+					<label class="form-label">รหัสวิชา</label>
+					<input type="text" name="sub_id" class="form-control" placeholder="กรุณาป้อนรหัสวิชา" value="<?= $edit_row['sub_id']; ?>" required>
+				</div>
+				<div class="mb-3">
+					<label class="form-label">ชื่อวิชา</label>
+					<input type="text" name="sub_name" class="form-control" placeholder="กรุณาป้อนชื่อวิชา" value="<?= $edit_row['sub_name']; ?>" required>
+				</div>
+				<div class="mb-3">
+					<label class="form-label">หน่วยกิต</label>
+					<input type="number" name="sub_credit" class="form-control" placeholder="กรุณาป้อนหน่วยกิต" value="<?= $edit_row['sub_credit']; ?>" required>
+				</div>
+				<div class="d-grid gap-2 mt-2">
+					<input type="submit" name="edit" class="btn btn-is" value="แก้ไขข้อมูล">
+				</div>
+				<div class="d-grid gap-2 mt-2">
+					<a href="subjects.php" class="btn btn-danger">ยกเลิก</a>
+				</div>
+			</form>
+			<br><br>
+			<?php } ?>
+
+
+				<h5 class="text-center">ข้อมูลรายวิชา</h5>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr class="text-center">
+								<th>รหัสประจำตัว</th>
+								<th>ชื่อจริง</th>
+								<th>นามสกุล</th>
+								<th colspan="2">จัดการ</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php 
+							
+							$sql = "SELECT * FROM subjects";
+							$query = mysqli_query($conn, $sql);
+							while($row = mysqli_fetch_assoc($query)) {
+
+							
+							?>
+							<tr class="text-center">
+								<td><?= $row['sub_id']; ?></td>
+								<td><?= $row['sub_name']; ?></td>
+								<td><?= $row['sub_credit']; ?></td>
+								<td colspan="2">
+									<a href="subjects.php?edit=<?= $row['sub_id']; ?>" class="btn btn-warning btn-sm">แก้ไข</a>
+									<a href="controller/subjectDelete.php?id=<?= $row['sub_id']; ?>" onclick="confirm('คุณแน่ใจใช่หรือไม่? ที่จะลบ <?= $row['sub_name']; ?> ออก')" class="btn btn-danger btn-sm">ลบ</a>
+								</td>
+							</tr>
+							<?php } ?>
+						</tbody>
+					</table>
+				</div>
+			</div>
+	<?php include('includes/sidebarContentBottom.inc.php'); ?>
+</body>
+</html>
