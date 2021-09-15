@@ -14,6 +14,9 @@ if(isset($_POST['login'])) {
 		$row = mysqli_fetch_array($query);
 		$_SESSION['login'] = $row['teacher_fname'] . " " . $row['teacher_lname'];
 		$_SESSION['position'] = $row['teacher_position'];
+		$_SESSION['start'] = time(); // ล็อคอินตอนนี้
+		// จะทำลาย session ภายใน 30 นาที
+		$_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
 		header("Location: ../../index.php");
 	} else {
 		// echo '<script>';
