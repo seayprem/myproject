@@ -11,7 +11,10 @@ if(empty($_SESSION['login'])) {
 	}
 
 }
+
+$position = $_SESSION['position'];
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,11 +36,16 @@ if(empty($_SESSION['login'])) {
 <!-- Content body -->
 <br>
 <!-- FORM  -->
-<form action="#" method="POST" enctype="multipart/form-data">
 	<div class="container">
 		<h1 class="text-center">ส่งข้อสอบ</h1>
+		<?php if($position == "หัวหน้าโปรแกรมวิชา") { ?>
+		<div class="text-right">
+			<a href="check_exam.php" class="btn btn-is">ตรวจข้อสอบ</a>
+		</div>
+		<?php } ?>
 		<hr>
 		<!-- Grid  -->
+		<form action="#" method="POST" enctype="multipart/form-data">
 		<div class="row">
 			<div class="col-md-4">
 				<h5 class="text-center">UPLOAD FILES</h5>
