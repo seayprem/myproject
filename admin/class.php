@@ -186,5 +186,6 @@ if(empty($_SESSION['officer'])) {
 
 	</div>
 	<?php include('includes/sidebarContentBottom.inc.php'); ?>
+	<?php include('includes/footer.inc.php'); ?>
 </body>
 </html>
