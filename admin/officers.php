@@ -142,6 +142,11 @@ if(empty($_SESSION['officer'])) {
 		
 		?>
 		<p>รหัสประจำตัว : <b><?= $info_row['officer_id']; ?></b></p>
+		<p>ชื่อผู้ใช้ : <b><?= $info_row['officer_user']; ?></b></p>
+		<p>รหัสผ่าน : <b><?= $info_row['officer_pass']; ?></b></p>
+		<p>ชื่อจริง : <b><?= $info_row['officer_fname']; ?></b></p>
+		<p>นามสกุล : <b><?= $info_row['officer_lname']; ?></b></p>
+		<p>โทรศัพท์ : <b><?= $info_row['officer_tel']; ?></b></p>
 		<br>
 		<div class="d-grid gap-2 mt-2">
 			<a href="officers.php" class="btn btn-danger">ย้อนกลับ</a>

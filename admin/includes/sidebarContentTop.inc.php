@@ -32,6 +32,16 @@
 								<i class="fas fa-book-open"></i> <span class="ms-1 d-none d-sm-inline">วิชา</span>
 							</a>
 						</li>
+						<li class="nav-item">
+							<a href="sent_exam.php" class="nav-link align-middle px-0">
+								<i class="fas fa-file-pdf"></i> <span class="ms-1 d-none d-sm-inline">รายการส่งข้อสอบ</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<a href="take_exam.php" class="nav-link align-middle px-0">
+								<i class="fas fa-file-alt"></i> <span class="ms-1 d-none d-sm-inline">รายการรับข้อสอบ</span>
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>
