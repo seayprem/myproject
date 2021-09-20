@@ -27,6 +27,16 @@ $position = $_SESSION['position'];
 	<!-- JS -->
 	<?php include('includes/js.inc.php'); ?>
 
+	<style>
+		button.nav-link {
+			color: black;
+		}
+		
+		button.active {
+			background: #f271cf !important;
+		}
+	</style>
+
 </head>
 <body>
 
