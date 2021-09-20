@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 14, 2021 at 04:36 PM
+-- Generation Time: Sep 20, 2021 at 11:27 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -41,7 +41,7 @@ CREATE TABLE `officers` (
 --
 
 INSERT INTO `officers` (`officer_id`, `officer_user`, `officer_pass`, `officer_fname`, `officer_lname`, `officer_tel`) VALUES
-('Administrator', 'admin', 'eb453f1d8d7be0f1d3eb1213ce3904f63467171f', 'administrator', 'system', 123456789);
+('Administrator', 'admin', 'eb453f1d8d7be0f1d3eb1213ce3904f63467171f', 'administrator', 'system', 1234562789);
 
 -- --------------------------------------------------------
 
@@ -61,6 +61,7 @@ CREATE TABLE `sent_exam` (
   `sent_single_copy` varchar(20) DEFAULT NULL,
   `sent_duplex_copy` varchar(20) DEFAULT NULL,
   `sent_num_page` int(10) DEFAULT NULL,
+  `sent_checked` int(11) DEFAULT NULL,
   `teacher_id` varchar(15) DEFAULT NULL,
   `sub_id` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -83,7 +84,7 @@ CREATE TABLE `students_class` (
 --
 
 INSERT INTO `students_class` (`class_id`, `class_amount`, `class_year`, `sub_id`) VALUES
-('BC3/2A', 41, 3, '01-406-011-133'),
+('BC3/2A', 44, 3, '01-406-011-133'),
 ('BC3/2B', 42, 3, '01-406-011-131');
 
 -- --------------------------------------------------------
@@ -145,7 +146,8 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`teacher_id`, `teacher_user`, `teacher_pass`, `teacher_fname`, `teacher_lname`, `teacher_tel`, `teacher_position`) VALUES
-('userid', 'user', '0caba15064170407c388b773f894fcc7651e9e65', 'user', 'view', 111111, 'view');
+('1234', 'user', '0caba15064170407c388b773f894fcc7651e9e65', 'user', 'view', 123121, 'user'),
+('test', 'test', 'f94c352ee87a98aa7734989ac5260571804f3bbd', 'หัวหน้า', 'โปรแกรมวิชา', 123123, 'หัวหน้าโปรแกรมวิชา');
 
 --
 -- Indexes for dumped tables
