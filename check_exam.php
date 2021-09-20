@@ -33,6 +33,7 @@ if(empty($_SESSION['login'])) {
 
 	<!-- Content body -->
 	<br>
+	<h3 class="text-center">ตรวจข้อสอบ</h3>
 
 
 
