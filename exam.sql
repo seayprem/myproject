@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2021 at 11:00 AM
+-- Generation Time: Sep 24, 2021 at 11:37 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -70,12 +70,15 @@ CREATE TABLE `sent_exam` (
   `sent_time_exam` int(5) DEFAULT NULL,
   `sent_date_exam` int(10) DEFAULT NULL,
   `sent_answersheet` varchar(20) DEFAULT NULL,
+  `sent_sheetcolor` varchar(64) NOT NULL,
   `sent_twopage_book` varchar(20) DEFAULT NULL,
   `sent_fourpage_book` varchar(20) DEFAULT NULL,
   `sent_single_copy` varchar(20) DEFAULT NULL,
   `sent_duplex_copy` varchar(20) DEFAULT NULL,
   `sent_num_page` int(10) DEFAULT NULL,
   `sent_checked` int(11) DEFAULT NULL,
+  `sent_other` text NOT NULL,
+  `sent_files` text NOT NULL,
   `teacher_id` varchar(15) DEFAULT NULL,
   `sub_id` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
