@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 20, 2021 at 11:27 AM
+-- Generation Time: Sep 24, 2021 at 10:51 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -20,6 +20,20 @@ SET time_zone = "+00:00";
 --
 -- Database: `exam`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `associate`
+--
+
+CREATE TABLE `associate` (
+  `ass_id` int(11) NOT NULL,
+  `ass_num_regis` varchar(64) DEFAULT NULL,
+  `ass_date_regis` varchar(64) DEFAULT NULL,
+  `sub_id` varchar(15) DEFAULT NULL,
+  `teacher_id` varchar(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -154,6 +168,14 @@ INSERT INTO `teachers` (`teacher_id`, `teacher_user`, `teacher_pass`, `teacher_f
 --
 
 --
+-- Indexes for table `associate`
+--
+ALTER TABLE `associate`
+  ADD PRIMARY KEY (`ass_id`),
+  ADD KEY `sub_id` (`sub_id`),
+  ADD KEY `teacher_id` (`teacher_id`);
+
+--
 -- Indexes for table `officers`
 --
 ALTER TABLE `officers`
@@ -195,8 +217,25 @@ ALTER TABLE `teachers`
   ADD PRIMARY KEY (`teacher_id`);
 
 --
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `associate`
+--
+ALTER TABLE `associate`
+  MODIFY `ass_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `associate`
+--
+ALTER TABLE `associate`
+  ADD CONSTRAINT `associate_ibfk_1` FOREIGN KEY (`sub_id`) REFERENCES `subjects` (`sub_id`),
+  ADD CONSTRAINT `associate_ibfk_2` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teacher_id`);
 
 --
 -- Constraints for table `sent_exam`
