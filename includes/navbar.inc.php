@@ -25,7 +25,7 @@
 					<a href="#" class="nav-link"><i class="fas fa-check-circle"></i> ตรวจสอบการส่งข้อสอบ</a>
 				</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link"><i class="fas fa-user"></i> <?= $_SESSION['login']; ?> </a>
+					<a href="profile.php" class="nav-link"><i class="fas fa-user"></i> <?= $_SESSION['login']; ?> </a>
 				</li>
 
 				<li class="nav-item">

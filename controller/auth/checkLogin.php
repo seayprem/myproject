@@ -14,6 +14,11 @@ if(isset($_POST['login'])) {
 		$row = mysqli_fetch_array($query);
 		$_SESSION['login'] = $row['teacher_fname'] . " " . $row['teacher_lname'];
 		$_SESSION['position'] = $row['teacher_position'];
+		$_SESSION['ids'] = $row['teacher_id'];
+		$_SESSION['user'] = $row['teacher_user'];
+		$_SESSION['fname'] = $row['teacher_fname'];
+		$_SESSION['lname'] = $row['teacher_lname'];
+		$_SESSION['tel'] = $row['teacher_tel'];
 		$_SESSION['start'] = time(); // ล็อคอินตอนนี้
 		// จะทำลาย session ภายใน 30 นาที
 		$_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
