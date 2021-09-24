@@ -117,18 +117,18 @@ $position = $_SESSION['position'];
 						<div class="col-md-6">
 							<div class="mb-3">
 								<label class="form-label">กรุณาเลือกภาคการศึกษา</label>
-								<select name="class_year" class="form-select">
+								<select name="sent_term" class="form-select">
 									<option selected disabled>-- กรุณาเลือกภาคการศึกษา -- </option>
-									<option value="" >2564</option>
+									<option value="2564">2564</option>
 								</select>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="mb-3">
 								<label class="form-label">กรุณาเลือกปีการศึกษา</label>
-								<select name="class_year" class="form-select">
+								<select name="sent_year" class="form-select">
 									<option selected disabled>-- กรุณาเลือกปีการศึกษา --</option>
-									<option value="" >2564</option>
+									<option value="2564">2564</option>
 								</select>
 							</div>
 						</div>
@@ -138,13 +138,13 @@ $position = $_SESSION['position'];
 						<div class="col-md-6">
 							<div class="mb-3">
 								<label class="form-label">กรุณาเลือกวันที่สอบ</label>
-								<input type="date" name="date" class="form-control">
+								<input type="date" name="sent_date_exam" class="form-control">
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="mb-3">
 								<label class="form-label">กรุณาเลือกเวลาสอบ</label>
-								<input type="time" name="time" class="form-control">
+								<input type="time" name="sent_time_exam" class="form-control">
 							</div>
 						</div>
 					</div>
@@ -190,15 +190,41 @@ $position = $_SESSION['position'];
 							<b>เลือกการจัดเย็บข้อสอบ</b>
 							<br>
 							<div class="form-check">
-								<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+								<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+								<label class="form-check-label" for="flexCheckDefault">
+									หน้าเดียว
+								</label>
+							</div>
+							<div class="mb-3">
+								<label class="form-label">แผนที่</label>
+								<input type="number" class="form-control" name="" value="0">
+							</div>
+							<div class="mb-3">
+								<label class="form-label">ถึง</label>
+								<input type="number" class="form-control" name="" value="0">
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+								<label class="form-check-label" for="flexCheckChecked">หน้าหลัง</label>
+							</div>
+							<div class="mb-3">
+								<label class="form-label">แผนที่</label>
+								<input type="number" class="form-control" name="" value="0">
+							</div>
+							<div class="mb-3">
+								<label class="form-label">ถึง</label>
+								<input type="number" class="form-control" name="" value="0">
+							</div>
+							<!-- <div class="form-check">
+								<input class="form-check-input" name="sent_single_copy" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
 								<label class="form-check-label" for="flexRadioDefault1">
 									หน้าเดียว
 								</label>
 							</div>
 							<div class="form-check">
-								<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+								<input class="form-check-input" name="sent_duplex_copy" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
 								<label class="form-check-label" for="flexRadioDefault2">หน้าหลัง</label>
-							</div>
+							</div> -->
 						</div>
 
 					</div>
@@ -207,10 +233,28 @@ $position = $_SESSION['position'];
 					</div>
 				<div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
 					<br>
-					<h3 class="text-center">ความต้องการอุปกรณ์ในการสอบ</h3>
-					
+					<h3 class="text-center">ความต้องการอุปกรณ์ในการสอบ</h3><br>
+					<p>เรียน อาจารย์ผู้สอน
+    ขอความอนุเคราห์กรอกข้อมูลให้ครบถ้วนเพื่อความสะดวกในการจัดทำข้อสอบ (สาเหตุต้องมีแบบฟอร์มเพิ่มเนื่องจาก แบบฟอร์ม PM ไม่สามารถใส่ข้อความเพิ่มเติมหรือแก้ไขข้อมูลอื่นใดได้)</p>
 					
 					<div class="options-sheet">
+						<b>ความต้องการในอุปกรณ์</b>
+						<br>
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" id="noneed" value="ไม่ต้องการ" id="flexCheckDefault">
+							<label class="form-check-label" for="flexCheckDefault">
+								ไม่ต้องการ
+							</label>
+						</div>
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" id="need" value="ต้องการ" id="flexCheckDefault">
+							<label class="form-check-label" for="flexCheckDefault">
+								ต้องการ
+							</label>
+						</div>		
+					</div><br>
+					
+					<div class="options-sheet" id="show-options">
 						<b>เลือกประเภทกระดาษคำตอบ</b>
 						<br>
 						<div class="form-check">
@@ -241,18 +285,18 @@ $position = $_SESSION['position'];
 	
 					
 					<br>
-					<div class="color-sheet">
+					<div class="color-sheet" id="show-options-1">
 						<b>เลือกสีกระดาษคำตอบ</b>
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" value="เขียว" id="flexCheckDefault">
 							<label class="form-check-label" for="flexCheckDefault">
-									เขียว
+									สีเขียว ชุดละ 2 แผ่น
 							</label>
 						</div>
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" value="เขียว" id="flexCheckDefault">
 							<label class="form-check-label" for="flexCheckDefault">
-									ฟ้า
+									สีฟ้า ชุดละ 4 แผ่น
 							</label>
 						</div>
 						<hr>
@@ -500,5 +544,11 @@ $position = $_SESSION['position'];
 
 <!-- footer -->
 <?php include('includes/footer.inc.php'); ?>
+<script>
+	$(document).ready(function() {
+		$('#show-options').hide()
+		$('#show-options-1').hide()
+	})
+</script>
 </body>
 </html>
