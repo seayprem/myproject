@@ -1,4 +1,5 @@
 <?php 
+include('config/db.php');
 session_start();
 if(empty($_SESSION['login'])) {
 	header("Location: login.php");
@@ -94,21 +95,18 @@ $position = $_SESSION['position'];
 					<h3 class="text-center">ข้อสอบเกี่ยวกับรายวิชาที่สอบ</h3>
 
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-12">
 							<div class="mb-3">
-								<label class="form-label">กรุณาเลือกรหัสวิชา</label>
+								<label class="form-label">กรุณาเลือกรายชื่อวิชา</label>
 								<select name="sub_id" class="form-select">
-									<option selected disabled>-- กรุณาเลือกรหัสวิชา --</option>
-									<option value="" >รหัสวิชา</option>
-								</select>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="mb-3">
-								<label class="form-label">กรุณาเลือกชื่อวิชา</label>
-								<select name="sub_name" class="form-select">
-									<option selected disabled>-- กรุณาเลือกชื่อวิชา --</option>
-									<option value="" >ชื่อวิชา</option>
+									<option selected disabled>-- กรุณาเลือกรายวิชา --</option>
+									<?php 
+										$sub_id_sql = "SELECT sub_id, sub_name FROM subjects";
+										$sub_id_query = mysqli_query($conn, $sub_id_sql);
+										while($sub_id_row = mysqli_fetch_assoc($sub_id_query)) {
+									?>
+									<option value="<?= $sub_id_row['sub_id']; ?>" ><?= $sub_id_row['sub_name']; ?></option>
+									<?php } ?>
 								</select>
 							</div>
 						</div>
@@ -151,15 +149,7 @@ $position = $_SESSION['position'];
 						</div>
 					</div>
 
-					<div class="mb-3">
-						<label class="form-label">กรุณาเลือกสาขาวิชา</label>
-						<select name="class_department" class="form-select">
-							<option selected disabled>-- กรุณาเลือกสาขาวิชา --</option>
-							<option value="" >เทคโนโลยีสารสนเทศ</option>
-						</select>
-					</div>
-
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-md-6">
 							<label class="form-label">กรุณาเลือกชั้นปี</label>
 							<select name="select_year" class="form-select">
@@ -186,42 +176,34 @@ $position = $_SESSION['position'];
 								<input type="number" name="test_amount" class="form-control" value="0">
 							</div>
 						</div>
-					</div>
-
+					</div> -->
 					<div class="row">
 						<div class="col-md-6">
 							<div class="mb-3">
-								<label class="form-label">จำนวนหน้าของข้อสอบ</label>
-								<input type="number" name="test_page_amount" class="form-control" value="0">
+								<label class="form-label">จำนวนหน้าข้อสอบ</label>
+								<input type="number" class="form-control" name="sent_num_page">
 							</div>
 						</div>
 
 						<div class="col-md-6">
-							<div class="mb-3">
-								<label class="form-label">เย็บข้อสอบ</label>
-								<select name="yeb_test" class="form-select">
-									<option selected disabled>-- กรุณาเลือกการเย็บข้อสอบ -- </option>
-									<option value="" >หน้าเดียว</option>
-									<option value="" >หน้าหลัง</option>
-								</select>
+							<div class="options-sheet">
+							<b>เลือกการจัดเย็บข้อสอบ</b>
+							<br>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+								<label class="form-check-label" for="flexRadioDefault1">
+									หน้าเดียว
+								</label>
+							</div>
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+								<label class="form-check-label" for="flexRadioDefault2">หน้าหลัง</label>
 							</div>
 						</div>
+
 					</div>
 
-					<div class="row">
-						<div class="col-md-6">
-							<div class="mb-3">
-								<label class="form-label">จากหน้า</label>
-								<input type="number" class="form-control" name="form_page" value="0" required>
-							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="mb-3">
-								<label class="form-label">ถึงหน้า</label>
-								<input type="number" class="form-control" name="end_page" value="0" required>
-							</div>
-						</div>
-					</div>
 					</div>
 				<div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">
 					<br>
