@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2021 at 10:51 AM
+-- Generation Time: Sep 24, 2021 at 11:00 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -32,7 +32,7 @@ CREATE TABLE `associate` (
   `ass_num_regis` varchar(64) DEFAULT NULL,
   `ass_date_regis` varchar(64) DEFAULT NULL,
   `sub_id` varchar(15) DEFAULT NULL,
-  `teacher_id` varchar(15) DEFAULT NULL
+  `class_id` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -173,7 +173,7 @@ INSERT INTO `teachers` (`teacher_id`, `teacher_user`, `teacher_pass`, `teacher_f
 ALTER TABLE `associate`
   ADD PRIMARY KEY (`ass_id`),
   ADD KEY `sub_id` (`sub_id`),
-  ADD KEY `teacher_id` (`teacher_id`);
+  ADD KEY `class_id` (`class_id`);
 
 --
 -- Indexes for table `officers`
@@ -235,7 +235,7 @@ ALTER TABLE `associate`
 --
 ALTER TABLE `associate`
   ADD CONSTRAINT `associate_ibfk_1` FOREIGN KEY (`sub_id`) REFERENCES `subjects` (`sub_id`),
-  ADD CONSTRAINT `associate_ibfk_2` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teacher_id`);
+  ADD CONSTRAINT `associate_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `students_class` (`class_id`);
 
 --
 -- Constraints for table `sent_exam`
