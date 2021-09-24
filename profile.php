@@ -110,6 +110,7 @@ $position = $_SESSION['position'];
 						<label class="form-label">เบอร์โทร</label>
 						<input type="text" class="form-control" name="tel" value="<?=  $_SESSION['tel']; ?>">
 					</div>
+					<input type="hidden" name="id" value="<?= $_SESSION['ids']; ?>">
 					<div class="d-grid gap-2">
 						<input type="submit" class="btn btn-is" value="แก้ไขข้อมูล">
 					</div>
