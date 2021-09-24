@@ -92,6 +92,7 @@ $position = $_SESSION['position'];
 					<h4 class="text-center">แก้ไขข้อมูลส่วนตัว</h4>
 					<div class="row">
 						<div class="col-md-6">
+							<form action="controller/auth/editProfile.php" method="POST">
 							<div class="mb-3">
 								<label class="form-label">ชื่อจริง</label>
 								<input type="text" class="form-control" name="fname" value="<?= $_SESSION['fname']; ?>">
@@ -110,10 +111,11 @@ $position = $_SESSION['position'];
 						<label class="form-label">เบอร์โทร</label>
 						<input type="text" class="form-control" name="tel" value="<?=  $_SESSION['tel']; ?>">
 					</div>
-					<input type="hidden" name="id" value="<?= $_SESSION['ids']; ?>">
+					<input type="hidden" name="ids" value="<?= $_SESSION['ids']; ?>">
 					<div class="d-grid gap-2">
-						<input type="submit" class="btn btn-is" value="แก้ไขข้อมูล">
+						<input type="submit" class="btn btn-is" name="editProfile" onclick="return confirm('คุณยืนยันที่จะแก้ไขข้อมูลส่วนตัวใช่หรือไม่? สามารถแก้ไขได้ทุกเมื่อ');" value="แก้ไขข้อมูล">
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>
