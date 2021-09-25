@@ -19,6 +19,7 @@ if(isset($_POST['sent_exam'])) {
 	$sent_fourpage_book = $_POST['sent_fourpage_book'];
 	$sent_other = $_POST['sent_other'];
 	$teacher_id = $_POST['teacher_id'];
+	$sent_checked = $_POST['sent_checked'];
 
 
 

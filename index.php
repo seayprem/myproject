@@ -305,6 +305,7 @@ $position = $_SESSION['position'];
 				</div>
 				<div class="tab-pane" id="settings" role="tabpanel" aria-labelledby="settings-tab">
 					<input type="hidden" name="teacher_id" value="<?= $_SESSION['ids']; ?>">
+					<input type="hidden" name="sent_checked" value="0">
 					<br>
 					<h3 class="text-center">ยืนยันในการส่งข้อสอบ</h3>
 					<br>
