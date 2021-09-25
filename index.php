@@ -240,18 +240,11 @@ $position = $_SESSION['position'];
 					<div class="options-sheet">
 						<b>ความต้องการในอุปกรณ์</b>
 						<br>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" id="noneed" value="ไม่ต้องการ" id="flexCheckDefault">
-							<label class="form-check-label" for="flexCheckDefault">
-								ไม่ต้องการ
-							</label>
-						</div>
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" id="need" value="ต้องการ" id="flexCheckDefault">
-							<label class="form-check-label" for="flexCheckDefault">
-								ต้องการ
-							</label>
-						</div>		
+						<select id="selected" class="form-select">
+							<option selected disabled>เลือกความต้องการ</option>
+							<option value="1">ต้องการ</option>
+							<option>ไม่ต้องการ</option>
+						</select>
 					</div><br>
 					
 					<div class="options-sheet" id="show-options">
@@ -546,8 +539,17 @@ $position = $_SESSION['position'];
 <?php include('includes/footer.inc.php'); ?>
 <script>
 	$(document).ready(function() {
-		$('#show-options').hide()
-		$('#show-options-1').hide()
+		$('#show-options').hide();
+		$('#show-options-1').hide();
+		$('#selected').change(function() {
+			if($('#selected').val() == 1) {
+				$('#show-options').show();
+				$('#show-options-1').show();
+			} else {
+				$('#show-options').hide();
+				$('#show-options-1').hide();
+			}
+		})
 	})
 </script>
 </body>
