@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 26, 2021 at 05:28 PM
+-- Generation Time: Sep 26, 2021 at 05:40 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -29,10 +29,10 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `associate` (
   `ass_id` int(11) NOT NULL,
-  `ass_num_regis` varchar(64) DEFAULT NULL,
-  `ass_date_regis` varchar(64) DEFAULT NULL,
-  `sub_id` varchar(15) DEFAULT NULL,
-  `class_id` varchar(15) DEFAULT NULL
+  `ass_num_regis` varchar(64) NOT NULL,
+  `ass_date_regis` varchar(64) NOT NULL,
+  `sub_id` varchar(15) NOT NULL,
+  `class_id` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -178,8 +178,8 @@ INSERT INTO `teachers` (`teacher_id`, `teacher_user`, `teacher_pass`, `teacher_f
 --
 ALTER TABLE `associate`
   ADD PRIMARY KEY (`ass_id`),
-  ADD KEY `sub_id` (`sub_id`),
-  ADD KEY `class_id` (`class_id`);
+  ADD KEY `associate_fkbs1` (`class_id`),
+  ADD KEY `associate_fkbs2` (`sub_id`);
 
 --
 -- Indexes for table `officers`
@@ -252,8 +252,8 @@ ALTER TABLE `take_exam`
 -- Constraints for table `associate`
 --
 ALTER TABLE `associate`
-  ADD CONSTRAINT `associate_ibfk_1` FOREIGN KEY (`sub_id`) REFERENCES `subjects` (`sub_id`),
-  ADD CONSTRAINT `associate_ibfk_2` FOREIGN KEY (`class_id`) REFERENCES `students_class` (`class_id`);
+  ADD CONSTRAINT `associate_fkbs1` FOREIGN KEY (`class_id`) REFERENCES `students_class` (`class_id`),
+  ADD CONSTRAINT `associate_fkbs2` FOREIGN KEY (`sub_id`) REFERENCES `subjects` (`sub_id`);
 
 --
 -- Constraints for table `sent_exam`
