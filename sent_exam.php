@@ -23,15 +23,26 @@ if(isset($_POST['sent_exam'])) {
 	// $sub_id = $_POST['sub_id'];
 
 	// Upload File 
-	$dir = "assets/files/";
-	$encode = md5("wanchaisaelim");
-	$newnamefile = $encode . rand(10, 10000) . basename($_FILES['file']['name']);
+	// $dir = "assets/files/";
+	// $encode = md5("wanchaisaelim");
+	// $newnamefile = $encode . rand(10, 10000) . basename($_FILES['file']['name']);
 	// $fileUpload = $dir . basename($_FILES['file']['name']);
-	$filenames = basename($_FILES['file']['name']);
-	if(move_uploaded_file($_FILES['file']['tmp_name'], $dir . $newnamefile)) {
-		echo "Successfully " . $newnamefile;
-	} else {
-		echo "Failed please re check your code.";
-	}
+	// $filenames = basename($_FILES['file']['name']);
+	// if(move_uploaded_file($_FILES['file']['tmp_name'], $dir . $newnamefile)) {
+	// 	echo "Successfully " . $newnamefile;
+	// } else {
+	// 	echo "Failed please re check your code.";
+	// }
+
+	// Logic to upload pdf file only
+
+	// if($_FILES['file']['type'] != "application/pdf") {
+	// 	echo "Error";
+	// } else {
+	// 	echo '<pre>';
+	// 	var_dump($_FILES);
+	// 	echo '</pre>';
+	// }
+
 
 }
