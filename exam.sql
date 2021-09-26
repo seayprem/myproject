@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 24, 2021 at 11:37 AM
+-- Generation Time: Sep 26, 2021 at 05:28 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -64,23 +64,26 @@ INSERT INTO `officers` (`officer_id`, `officer_user`, `officer_pass`, `officer_f
 --
 
 CREATE TABLE `sent_exam` (
-  `sent_no` int(15) NOT NULL,
+  `sent_no` int(11) NOT NULL,
   `sent_term` int(2) DEFAULT NULL,
   `sent_year` int(5) DEFAULT NULL,
-  `sent_time_exam` int(5) DEFAULT NULL,
-  `sent_date_exam` int(10) DEFAULT NULL,
-  `sent_answersheet` varchar(20) DEFAULT NULL,
-  `sent_sheetcolor` varchar(64) NOT NULL,
-  `sent_twopage_book` varchar(20) DEFAULT NULL,
-  `sent_fourpage_book` varchar(20) DEFAULT NULL,
-  `sent_single_copy` varchar(20) DEFAULT NULL,
-  `sent_duplex_copy` varchar(20) DEFAULT NULL,
-  `sent_num_page` int(10) DEFAULT NULL,
+  `sent_time_exam` text NOT NULL,
+  `sent_date_exam` text NOT NULL,
+  `sent_answersheet` varchar(20) NOT NULL,
+  `sent_twopage_book` varchar(20) NOT NULL,
+  `sent_fourpage_book` varchar(20) NOT NULL,
+  `sent_single_copy` varchar(20) NOT NULL,
+  `sent_single_copy_start` int(11) DEFAULT NULL,
+  `sent_single_copy_end` int(11) DEFAULT NULL,
+  `sent_duplex_copy` varchar(20) NOT NULL,
+  `sent_duplex_copy_start` int(11) DEFAULT NULL,
+  `sent_duplex_copy_end` int(11) DEFAULT NULL,
+  `sent_num_page` int(11) DEFAULT NULL,
   `sent_checked` int(11) DEFAULT NULL,
   `sent_other` text NOT NULL,
   `sent_files` text NOT NULL,
-  `teacher_id` varchar(15) DEFAULT NULL,
-  `sub_id` varchar(15) DEFAULT NULL
+  `teacher_id` varchar(15) NOT NULL,
+  `sub_id` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -136,10 +139,10 @@ INSERT INTO `subjects` (`sub_id`, `sub_name`, `sub_credit`) VALUES
 --
 
 CREATE TABLE `take_exam` (
-  `take_no` int(15) NOT NULL,
-  `take_date` int(10) DEFAULT NULL,
-  `officer_id` varchar(15) DEFAULT NULL,
-  `sent_no` int(15) DEFAULT NULL
+  `take_no` int(11) NOT NULL,
+  `take_date` text NOT NULL,
+  `officer_id` varchar(15) NOT NULL,
+  `sent_no` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -189,8 +192,8 @@ ALTER TABLE `officers`
 --
 ALTER TABLE `sent_exam`
   ADD PRIMARY KEY (`sent_no`),
-  ADD KEY `teacher_id` (`teacher_id`),
-  ADD KEY `sub_id` (`sub_id`);
+  ADD KEY `sent_exam_fkbs1` (`sub_id`),
+  ADD KEY `sent_exam_fkbs2` (`teacher_id`);
 
 --
 -- Indexes for table `students_class`
@@ -210,8 +213,8 @@ ALTER TABLE `subjects`
 --
 ALTER TABLE `take_exam`
   ADD PRIMARY KEY (`take_no`),
-  ADD KEY `officer_id` (`officer_id`),
-  ADD KEY `sent_no` (`sent_no`);
+  ADD KEY `take_exam_fbfk_1` (`officer_id`),
+  ADD KEY `take_exam_fbfk_2` (`sent_no`);
 
 --
 -- Indexes for table `teachers`
@@ -230,6 +233,18 @@ ALTER TABLE `associate`
   MODIFY `ass_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `sent_exam`
+--
+ALTER TABLE `sent_exam`
+  MODIFY `sent_no` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `take_exam`
+--
+ALTER TABLE `take_exam`
+  MODIFY `take_no` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -244,8 +259,8 @@ ALTER TABLE `associate`
 -- Constraints for table `sent_exam`
 --
 ALTER TABLE `sent_exam`
-  ADD CONSTRAINT `sent_exam_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teacher_id`),
-  ADD CONSTRAINT `sent_exam_ibfk_2` FOREIGN KEY (`sub_id`) REFERENCES `subjects` (`sub_id`);
+  ADD CONSTRAINT `sent_exam_fkbs1` FOREIGN KEY (`sub_id`) REFERENCES `subjects` (`sub_id`),
+  ADD CONSTRAINT `sent_exam_fkbs2` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teacher_id`);
 
 --
 -- Constraints for table `students_class`
@@ -257,8 +272,8 @@ ALTER TABLE `students_class`
 -- Constraints for table `take_exam`
 --
 ALTER TABLE `take_exam`
-  ADD CONSTRAINT `take_exam_ibfk_1` FOREIGN KEY (`officer_id`) REFERENCES `officers` (`officer_id`),
-  ADD CONSTRAINT `take_exam_ibfk_2` FOREIGN KEY (`sent_no`) REFERENCES `sent_exam` (`sent_no`);
+  ADD CONSTRAINT `take_exam_fbfk_1` FOREIGN KEY (`officer_id`) REFERENCES `officers` (`officer_id`),
+  ADD CONSTRAINT `take_exam_fbfk_2` FOREIGN KEY (`sent_no`) REFERENCES `sent_exam` (`sent_no`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
