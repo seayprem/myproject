@@ -56,7 +56,7 @@ $position = $_SESSION['position'];
 		<?php } ?>
 		<hr>
 		<!-- Grid  -->
-		<form action="#" method="POST" enctype="multipart/form-data">
+		<form action="sent_exam.php" method="POST" enctype="multipart/form-data">
 		
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs nav-pills nav-justified" id="myTab" role="tablist">
@@ -86,7 +86,7 @@ $position = $_SESSION['position'];
 					<div class="form">
 						<div class="mb-3">
 							<label for="formFile" class="form-label">อัพโหลดได้เฉพาะไฟล์ PDF เท่านั้น</label>
-							<input class="form-control" type="file" id="formFile">
+							<input class="form-control" name="file" type="file" id="formFile">
 						</div>
 					</div>
 				</div>
@@ -148,35 +148,6 @@ $position = $_SESSION['position'];
 							</div>
 						</div>
 					</div>
-
-					<!-- <div class="row">
-						<div class="col-md-6">
-							<label class="form-label">กรุณาเลือกชั้นปี</label>
-							<select name="select_year" class="form-select">
-								<option selected disabled>-- กรุณาเลือกชั้นปี --</option>
-								<option value="" >2564</option>
-							</select>
-						</div>
-						<div class="col-md-6">
-							<label class="form-label">จำนวนนักศึกษา</label>
-							<input type="number" class="form-control" value="0">
-						</div>
-					</div>
-
-					<div class="row">
-						<div class="col-md-6">
-							<div class="mb-3">
-								<label class="form-label">จำนวนนักศึกษา</label>
-								<input type="number" name="class_amount" class="form-control" value="0">
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="mb-3">
-								<label class="form-label">จำนวนข้อสอบ</label>
-								<input type="number" name="test_amount" class="form-control" value="0">
-							</div>
-						</div>
-					</div> -->
 					<div class="row">
 						<div class="col-md-6">
 							<div class="mb-3">
@@ -310,7 +281,7 @@ $position = $_SESSION['position'];
 					<h3 class="text-center">ยืนยันในการส่งข้อสอบ</h3>
 					<br>
 					<div class="d-grid gap-2 mb-3">
-						<input type="submit" class="btn btn-is btn-lg" name="send_exam" onclick="return confirm('คุณแน่ใจใช่แล้วหรือไม่? ถ้ากดยืนยันไปแล้วจะไม่สามารถกลับมาแก้ไขได้อีก')" value="ส่งข้อสอบ">
+						<input type="submit" class="btn btn-is btn-lg" onclick="return confirm('คุณแน่ใจใช่แล้วหรือไม่? ถ้ากดยืนยันไปแล้วจะไม่สามารถกลับมาแก้ไขได้อีก')" name="sent_exam" value="ส่งข้อสอบ">
 					</div>
 				</div>
 			</div>
