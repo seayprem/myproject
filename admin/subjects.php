@@ -126,18 +126,27 @@ if(empty($_SESSION['officer'])) {
 						</thead>
 						<tbody>
 							<?php 
+							$page_start = 0;
+							$page_end = 0;
+							$active = '';
+							if(empty(isset($_GET['pageno']))) {
+								$sql = "SELECT * FROM subjects";
+								$query = mysqli_query($conn, $sql);
+								$active = 'active';
+							} else {
+								$sql = "SELECT * FROM subjects LIMIT 5";
+								$query = mysqli_query($conn, $sql);
+							}
 							
-							$sql = "SELECT * FROM subjects";
-							$query = mysqli_query($conn, $sql);
 							while($row = mysqli_fetch_assoc($query)) {
 
 							
 							?>
-							<tr class="text-center">
-								<td><?= $row['sub_id']; ?></td>
+							<tr>
+								<td class="text-center"><?= $row['sub_id']; ?></td>
 								<td><?= $row['sub_name']; ?></td>
-								<td><?= $row['sub_credit']; ?></td>
-								<td colspan="2">
+								<td class="text-center"><?= $row['sub_credit']; ?></td>
+								<td colspan="2" class="text-center">
 									<a href="subjects.php?edit=<?= $row['sub_id']; ?>" class="btn btn-warning btn-sm">แก้ไข</a>
 									<a href="controller/subjectDelete.php?id=<?= $row['sub_id']; ?>" onclick="confirm('คุณแน่ใจใช่หรือไม่? ที่จะลบ <?= $row['sub_name']; ?> ออก')" class="btn btn-danger btn-sm">ลบ</a>
 								</td>
@@ -145,6 +154,19 @@ if(empty($_SESSION['officer'])) {
 							<?php } ?>
 						</tbody>
 					</table>
+					<ul class="pagination justify-content-center">
+						<li class="page-item disabled">
+							<a class="page-link" href="" tabindex="-1" aria-disabled="true">Previous</a>
+						</li>
+						<li class="page-item <?= $active; ?>"><a class="page-link" href="subjects.php?pageno=1">1</a></li>
+						<li class="page-item" aria-current="page">
+							<a class="page-link" href="#">2</a>
+						</li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item">
+							<a class="page-link" href="#">Next</a>
+						</li>
+					</ul>
 				</div>
 			</div>
 	<?php include('includes/sidebarContentBottom.inc.php'); ?>
