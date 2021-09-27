@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2021 at 05:05 PM
+-- Generation Time: Sep 27, 2021 at 05:15 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -50,14 +50,21 @@ CREATE TABLE `officers` (
   `officer_tel` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `officers`
+--
+
+INSERT INTO `officers` (`officer_id`, `officer_user`, `officer_pass`, `officer_fname`, `officer_lname`, `officer_tel`) VALUES
+('64152210046-9', 'wanchai.sa', '1d67112226ca211d4e454b1cd64fdc1a9870275b', 'Wanchai', 'Saelim', 979645941);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sent_no`
+-- Table structure for table `sent_exam`
 --
 
-CREATE TABLE `sent_no` (
-  `sent_no` int(11) NOT NULL,
+CREATE TABLE `sent_exam` (
+  `sent_no` varchar(15) NOT NULL,
   `sent_term` int(2) NOT NULL,
   `sent_year` int(5) NOT NULL,
   `sent_time_exam` text NOT NULL,
@@ -152,12 +159,12 @@ ALTER TABLE `officers`
   ADD PRIMARY KEY (`officer_id`);
 
 --
--- Indexes for table `sent_no`
+-- Indexes for table `sent_exam`
 --
-ALTER TABLE `sent_no`
+ALTER TABLE `sent_exam`
   ADD PRIMARY KEY (`sent_no`),
-  ADD KEY `teacher_fk1` (`teacher_id`),
-  ADD KEY `subject_fk1` (`sub_id`);
+  ADD KEY `teacherid_fk1` (`teacher_id`),
+  ADD KEY `subids_fk1` (`sub_id`);
 
 --
 -- Indexes for table `students_class`
@@ -197,12 +204,6 @@ ALTER TABLE `associate`
   MODIFY `ass_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `sent_no`
---
-ALTER TABLE `sent_no`
-  MODIFY `sent_no` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `take_exam`
 --
 ALTER TABLE `take_exam`
@@ -220,11 +221,11 @@ ALTER TABLE `associate`
   ADD CONSTRAINT `sub_fk2` FOREIGN KEY (`sub_id`) REFERENCES `subjects` (`sub_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `sent_no`
+-- Constraints for table `sent_exam`
 --
-ALTER TABLE `sent_no`
-  ADD CONSTRAINT `subject_fk1` FOREIGN KEY (`sub_id`) REFERENCES `subjects` (`sub_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `teacher_fk1` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teacher_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `sent_exam`
+  ADD CONSTRAINT `subids_fk1` FOREIGN KEY (`sub_id`) REFERENCES `subjects` (`sub_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `teacherid_fk1` FOREIGN KEY (`teacher_id`) REFERENCES `teachers` (`teacher_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `students_class`
