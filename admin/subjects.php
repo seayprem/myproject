@@ -82,7 +82,7 @@ if(empty($_SESSION['officer'])) {
 					$update_sql = "UPDATE subjects SET sub_id = '".$update_sub_id."', sub_name = '".$update_sub_name."' , sub_credit = '".$update_sub_credit."' WHERE sub_id = '".$id."' ";
 					$update_query = mysqli_query($conn, $update_sql);
 					if($update_query) {
-						header("Location: subjects.php");
+						echo '<script>alert("แก้ไข ข้อมูลสำเร็จ"); window.location.href = "subjects.php"</script>';
 					} else {
 						echo '<script>alert("ล้มเหลว กรุณาลองใหม่อีกครั้ง"); window.location.href="../subjects.php"</script>';
 					}

@@ -105,7 +105,7 @@ if(empty($_SESSION['officer'])) {
 				$update_sql = "UPDATE students_class SET class_id = '".$class_id."', class_amount = '".$class_amount."', class_year = '".$class_year."' WHERE class_id = '".$edit_id."' ";
 				$update_query = mysqli_query($conn, $update_sql);
 				if($update_query) {
-					header("Location: class.php");
+					echo '<script>alert("แก้ไข ข้อมูลสำเร็จ"); window.location.href = "class.php"</script>';
 				} else {
 					echo '<script>alert("ล้มเหลว กรุณาลองใหม่อีกครั้ง"); window.location.href="class.php"</script>';
 				}

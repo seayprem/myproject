@@ -102,7 +102,7 @@ if(empty($_SESSION['officer'])) {
 				$update_sql = "UPDATE teachers SET teacher_id = '".$update_teacher_id."', teacher_user = '".$update_teacher_user."', teacher_pass = '".$update_teacher_pass."', teacher_fname = '".$update_teacher_fname."', teacher_lname = '".$update_teacher_lname."', teacher_tel = '".$update_teacher_tel."', teacher_position = '".$update_teacher_position."' WHERE teacher_id = '".$edit_id."'";
 				$update_query = mysqli_query($conn, $update_sql);
 				if($update_query) {
-					header("Location: teachers.php");
+					echo '<script>alert("แก้ไข ข้อมูลสำเร็จ"); window.location.href = "teachers.php"</script>';
 				} else {
 					echo '<script>alert("ล้มเหลว กรุณาลองใหม่อีกครั้ง"); window.location.href="teachers.php"</script>';
 				}
