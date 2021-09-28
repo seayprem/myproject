@@ -150,7 +150,7 @@ if(empty($_SESSION['officer'])) {
 		<?php 
 		if(isset($_GET['info'])) {
 			$info_id = $_GET['info'];
-			$info_sql = "SELECT * FROM teachers";
+			$info_sql = "SELECT * FROM teachers WHERE teacher_id = '".$info_id."'";
 			$info_query = mysqli_query($conn, $info_sql);
 			$info_row = mysqli_fetch_array($info_query);
 		?>
@@ -197,9 +197,9 @@ if(empty($_SESSION['officer'])) {
 								<td><?= $row['teacher_lname']; ?></td>
 								<td><?= $row['teacher_tel']; ?></td>
 								<td colspan="3">
-									<a href="teachers.php?info=<?= $row['teacher_id']; ?>" class="btn btn-secondary btn-sm">ดูข้อมูล</a>
-									<a href="teachers.php?edit=<?= $row['teacher_id']; ?>" class="btn btn-warning btn-sm">แก้ไข</a>
-									<a href="controller/teacherDelete.php?id=<?= $row['teacher_id']; ?>" onclick="confirm('คุณแน่ใจใช่หรือไม่? ที่จะลบ <?= $row['teacher_fname']; ?> ออก')" class="btn btn-danger btn-sm">ลบ</a>
+									<a href="teachers.php?info=<?= $row['teacher_id']; ?>" class="btn btn-secondary btn-sm"><i class="fas fa-info-circle"></i></a>
+									<a href="teachers.php?edit=<?= $row['teacher_id']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+									<a href="controller/teacherDelete.php?id=<?= $row['teacher_id']; ?>" onclick="confirm('คุณแน่ใจใช่หรือไม่? ที่จะลบ <?= $row['teacher_fname']; ?> ออก')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
 								</td>
 							</tr>
 							<?php } ?>
