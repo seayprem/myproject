@@ -189,9 +189,9 @@ if(empty($_SESSION['officer'])) {
 								<td><?= $row['officer_lname']; ?></td>
 								<td><?= $row['officer_tel']; ?></td>
 								<td colspan="3">
-									<a href="officers.php?info=<?= $row['officer_id']; ?>" class="btn btn-secondary btn-sm">ดูข้อมูล</a>
-									<a href="officers.php?edit=<?= $row['officer_id']; ?>" class="btn btn-warning btn-sm">แก้ไข</a>
-									<a href="controller/officerDelete.php?id=<?= $row['officer_id']; ?>" onclick="return confirm('คุณแน่ใจใช่หรือไม่? ที่จะลบ <?= $row['officer_fname'] . ' ' . $row['officer_lname']; ?> ออกจากระบบ')" class="btn btn-danger btn-sm">ลบ</a>
+									<a href="officers.php?info=<?= $row['officer_id']; ?>" class="btn btn-secondary btn-sm"><i class="fas fa-info-circle"></i></a>
+									<a href="officers.php?edit=<?= $row['officer_id']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+									<a href="controller/officerDelete.php?id=<?= $row['officer_id']; ?>" onclick="return confirm('คุณแน่ใจใช่หรือไม่? ที่จะลบ <?= $row['officer_fname'] . ' ' . $row['officer_lname']; ?> ออกจากระบบ')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
 								</td>
 							</tr>
 							<?php } ?>

@@ -81,7 +81,7 @@ if(empty($_SESSION['login'])) {
 								<td class="text-center">โปรแกรมเมอร์</td>
 								<td class="text-center">13:00</td>
 								<td class="text-center">
-									<a href="#" class="btn btn-secondary">ดูข้อมูล</a>
+									<a href="#" class="btn btn-secondary"><i class="fas fa-info-circle"></i></a>
 								</td>
 							</tr>
 						</tbody>

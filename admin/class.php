@@ -182,8 +182,8 @@ if(empty($_SESSION['officer'])) {
 						<td><?= $row['class_year']; ?></td>
 						<td><?= $row['sub_id']; ?></td>
 						<td>
-							<a href="class.php?edit=<?= $row['class_id']; ?>" class="btn btn-warning btn-sm">แก้ไข</a>
-							<a href="controller/classDelete.php?id=<?= $row['class_id']; ?>" onclick="return confirm('คุณแน่ใจใช่แล้วหรือไม่? ที่ต้องการลบ')" class="btn btn-danger btn-sm">ลบ</a>
+							<a href="class.php?edit=<?= $row['class_id']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+							<a href="controller/classDelete.php?id=<?= $row['class_id']; ?>" onclick="return confirm('คุณแน่ใจใช่แล้วหรือไม่? ที่ต้องการลบ')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
 						</td>
 					</tr>
 					<?php } ?>

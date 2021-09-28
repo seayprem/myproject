@@ -147,14 +147,14 @@ if(empty($_SESSION['officer'])) {
 								<td><?= $row['sub_name']; ?></td>
 								<td class="text-center"><?= $row['sub_credit']; ?></td>
 								<td colspan="2" class="text-center">
-									<a href="subjects.php?edit=<?= $row['sub_id']; ?>" class="btn btn-warning btn-sm">แก้ไข</a>
-									<a href="controller/subjectDelete.php?id=<?= $row['sub_id']; ?>" onclick="confirm('คุณแน่ใจใช่หรือไม่? ที่จะลบ <?= $row['sub_name']; ?> ออก')" class="btn btn-danger btn-sm">ลบ</a>
+									<a href="subjects.php?edit=<?= $row['sub_id']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+									<a href="controller/subjectDelete.php?id=<?= $row['sub_id']; ?>" onclick="confirm('คุณแน่ใจใช่หรือไม่? ที่จะลบ <?= $row['sub_name']; ?> ออก')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
 								</td>
 							</tr>
 							<?php } ?>
 						</tbody>
 					</table>
-					<ul class="pagination justify-content-center">
+					<!-- <ul class="pagination justify-content-center">
 						<li class="page-item disabled">
 							<a class="page-link" href="" tabindex="-1" aria-disabled="true">Previous</a>
 						</li>
@@ -166,7 +166,7 @@ if(empty($_SESSION['officer'])) {
 						<li class="page-item">
 							<a class="page-link" href="#">Next</a>
 						</li>
-					</ul>
+					</ul> -->
 				</div>
 			</div>
 	<?php include('includes/sidebarContentBottom.inc.php'); ?>
