@@ -32,9 +32,9 @@
 					<a href="logout.php" id="logout" class="nav-link"><i class="fas fa-sign-out-alt"></i> ออกจากระบบ</a>
 				</li>
 				<?php } else { ?>
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 					<a href="#" class="nav-link"><i class="far fa-file"></i> คู่มือการใช้งาน</a>
-				</li>
+				</li> -->
 				<li class="nav-item">
 					<a href="login.php" class="nav-link"><i class="fas fa-sign-in-alt"></i> ลงชื่อเข้าใช้</a>
 				</li>
