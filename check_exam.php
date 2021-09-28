@@ -61,13 +61,98 @@ if(empty($_SESSION['login'])) {
 		</ul>
 		<div class="tab-content" id="pills-tabContent">
 			<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-				รายการข้อสอบ
+				<div class="table-responsive">
+					<table class="table">
+						<thead class="text-center">
+							<tr>
+								<th>หมายเลขลำดับข้อสอบ</th>
+								<th>ชื่อผู้ส่งข้อสอบ</th>
+								<th>รายวิชาข้อสอบ</th>
+								<th>เวลาที่ส่ง</th>
+								<th>
+									จัดการข้อมูล
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="text-center">1</td>
+								<td>วันชัย แซ่ลิ้ม</td>
+								<td class="text-center">โปรแกรมเมอร์</td>
+								<td class="text-center">13:00</td>
+								<td class="text-center">
+									<a href="#" class="btn btn-secondary">ดูข้อมูล</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 			<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-				ข้อสอบที่อนุมัติ
+				<div class="table-responsive">
+					<table class="table">
+						<thead class="text-center">
+							<tr>
+								<th>หมายเลขลำดับข้อสอบ</th>
+								<th>ชื่อผู้ส่งข้อสอบ</th>
+								<th>รายวิชาข้อสอบ</th>
+								<th>เวลาที่ส่ง</th>
+								<th>
+									จัดการข้อมูล
+								</th>
+								<th>
+									สถานะ
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="text-center">1</td>
+								<td>วันชัย แซ่ลิ้ม</td>
+								<td class="text-center">โปรแกรมเมอร์</td>
+								<td class="text-center">13:00</td>
+								<td class="text-center">
+									<a href="#" class="btn btn-secondary">ดูข้อมูล</a>
+								</td>
+								<td class="text-center">
+									<p class="text-success">อนุมัติแล้ว</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 			<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-				ข้อสอบที่ไม่อนุมัติ
+				<div class="table-responsive">
+					<table class="table">
+						<thead class="text-center">
+							<tr>
+								<th>หมายเลขลำดับข้อสอบ</th>
+								<th>ชื่อผู้ส่งข้อสอบ</th>
+								<th>รายวิชาข้อสอบ</th>
+								<th>เวลาที่ส่ง</th>
+								<th>
+									จัดการข้อมูล
+								</th>
+								<th>สถานะ</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="text-center">1</td>
+								<td>วันชัย แซ่ลิ้ม</td>
+								<td class="text-center">โปรแกรมเมอร์</td>
+								<td class="text-center">13:00</td>
+								<td class="text-center">
+									<a href="#" class="btn btn-secondary">ดูข้อมูล</a>
+								</td>
+								<td class='text-center'>
+									<p class="text-danger">ไม่ผ่านการอนุมัติ</p>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>	
 	</div>
