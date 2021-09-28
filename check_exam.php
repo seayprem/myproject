@@ -62,7 +62,7 @@ if(empty($_SESSION['login'])) {
 		<div class="tab-content" id="pills-tabContent">
 			<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
 				<div class="table-responsive">
-					<table class="table">
+					<table class="table table-hover">
 						<thead class="text-center">
 							<tr>
 								<th>หมายเลขลำดับข้อสอบ</th>
@@ -90,7 +90,7 @@ if(empty($_SESSION['login'])) {
 			</div>
 			<div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 				<div class="table-responsive">
-					<table class="table">
+					<table class="table table-hover">
 						<thead class="text-center">
 							<tr>
 								<th>หมายเลขลำดับข้อสอบ</th>
@@ -124,7 +124,7 @@ if(empty($_SESSION['login'])) {
 			</div>
 			<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
 				<div class="table-responsive">
-					<table class="table">
+					<table class="table table-hover">
 						<thead class="text-center">
 							<tr>
 								<th>หมายเลขลำดับข้อสอบ</th>
