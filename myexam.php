@@ -13,6 +13,9 @@ if(empty($_SESSION['login'])) {
 
 }
 $position = $_SESSION['position'];
+$counts_sql = "SELECT COUNT(*) AS total FROM sent_exam WHERE teacher_id = '".$_SESSION['ids']."'";
+$counts_query = mysqli_query($conn, $counts_sql);
+$counts_rows = mysqli_fetch_assoc($counts_query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,6 +51,18 @@ $position = $_SESSION['position'];
 				</thead>
 				<tbody>
 					<?php 
+					if($counts_rows['total'] == 0) {
+						echo '<tr>
+						<td class="text-center" colspan="4">	
+						ไม่พบข้อมูล
+						</td>
+						
+						</tr>';
+					} else {
+
+					?>
+					
+					<?php 
 						$sql = "SELECT sent_exam.sent_no, subjects.sub_name, sent_exam.sent_checked FROM sent_exam LEFT JOIN subjects ON sent_exam.sub_id = subjects.sub_id WHERE sent_exam.teacher_id = '".$_SESSION['ids']."'";
 						$query = mysqli_query($conn, $sql);
 						while($row = mysqli_fetch_assoc($query)) {
@@ -71,6 +86,8 @@ $position = $_SESSION['position'];
 						</td>
 					</tr>
 					<?php } ?>
+
+				<?php } ?>
 						
 				</tbody>
 			</table>
