@@ -1,4 +1,5 @@
 <?php 
+include('config/db.php');
 session_start();
 $position = $_SESSION['position'];
 if(empty($_SESSION['login'])) {
@@ -75,15 +76,23 @@ if(empty($_SESSION['login'])) {
 							</tr>
 						</thead>
 						<tbody>
+							<?php 
+								$list_sent_exam_sql = "SELECT sent_exam.sent_no, teachers.teacher_fname, teachers.teacher_lname, subjects.sub_name FROM sent_exam INNER JOIN teachers ON sent_exam.teacher_id = teachers.teacher_id INNER JOIN subjects ON sent_exam.sub_id = subjects.sub_id ORDER BY sent_exam.sent_no DESC";
+								$list_sent_exam_query = mysqli_query($conn, $list_sent_exam_sql);
+								while($list_sent_exam_rows = mysqli_fetch_assoc($list_sent_exam_query)) {
+
+								
+							?>
 							<tr>
-								<td class="text-center">1</td>
-								<td>วันชัย แซ่ลิ้ม</td>
-								<td class="text-center">โปรแกรมเมอร์</td>
+								<td class="text-center"><?= $list_sent_exam_rows['sent_no']; ?></td>
+								<td><?= $list_sent_exam_rows['teacher_fname'] . ' ' . $list_sent_exam_rows['teacher_lname']; ?></td>
+								<td class="text-center"><?= $list_sent_exam_rows['sub_name']; ?></td>
 								<td class="text-center">13:00</td>
 								<td class="text-center">
 									<a href="#" class="btn btn-secondary"><i class="fas fa-info-circle"></i></a>
 								</td>
 							</tr>
+							<?php } ?>
 						</tbody>
 					</table>
 				</div>
