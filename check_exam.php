@@ -15,6 +15,9 @@ if(empty($_SESSION['login'])) {
 	}
 
 }
+$counts_sql = "SELECT COUNT(*) AS total FROM sent_exam";
+$counts_query = mysqli_query($conn, $counts_sql);
+$counts_rows = mysqli_fetch_assoc($counts_query)
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,6 +80,15 @@ if(empty($_SESSION['login'])) {
 						</thead>
 						<tbody>
 							<?php 
+							if($counts_rows['total'] == 0)	{
+								echo '
+								<tr>
+									<td class="text-center" colspan="5">ไม่พบข้อมูล</td>	
+								</tr>	
+								';
+							} else {
+							?>
+							<?php 
 								$list_sent_exam_sql = "SELECT sent_exam.sent_no, teachers.teacher_fname, teachers.teacher_lname, subjects.sub_name FROM sent_exam INNER JOIN teachers ON sent_exam.teacher_id = teachers.teacher_id INNER JOIN subjects ON sent_exam.sub_id = subjects.sub_id ORDER BY sent_exam.sent_no DESC";
 								$list_sent_exam_query = mysqli_query($conn, $list_sent_exam_sql);
 								while($list_sent_exam_rows = mysqli_fetch_assoc($list_sent_exam_query)) {
@@ -93,6 +105,7 @@ if(empty($_SESSION['login'])) {
 								</td>
 							</tr>
 							<?php } ?>
+						<?php } ?>
 						</tbody>
 					</table>
 				</div>
