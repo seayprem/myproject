@@ -16,7 +16,7 @@ if(isset($_POST['sent_exam'])) {
 	$sent_duplex_copy_start = $_POST['sent_duplex_copy_start'];
 	$sent_duplex_copy_end = $_POST['sent_duplex_copy_end'];
 	$sent_num_page = $_POST['sent_num_page'];
-	// $sent_checked = $_POST['sent_checked']; // Not add to SQL because i will be set to 0
+	$sent_checked = 0;
 	$sent_other = $_POST['sent_other'];
 
 	$teacher_id = $_POST['teacher_id'];
@@ -33,11 +33,17 @@ if(isset($_POST['sent_exam'])) {
 	if($_FILES['file']['type'] != "application/pdf") {
 		echo '<script>
 		alert("อัพโหลดได้เฉพาะไฟล์นามสกุล PDF เท่านั้น");
-		window.location.href = "window.history.back()";
+		window.history.back();
 		</script>';
 	} else {
 		if(move_uploaded_file($_FILES['file']['tmp_name'], $dir . $newnamefile)) {
-			echo "Successfully " . $newnamefile;
+			$sql = "INSERT INTO sent_exam (sent_term, sent_year, sent_time_exam, sent_date_exam, sent_answersheet, sent_twopage_book, sent_fourpage_book, sent_single_copy, sent_single_copy_start, sent_single_copy_end, sent_duplex_copy, sent_duplex_copy_start, sent_duplex_copy_end, sent_num_page, sent_checked, sent_other, sent_files, teacher_id, sub_id) VALUES ('".$sent_term."', '".$sent_year."', '".$sent_time_exam."', '".$sent_date_exam."', '".$sent_answersheet."', '".$sent_twopage_book."', '".$sent_fourpage_book."', '".$sent_single_copy."', '".$sent_single_copy_start."', '".$sent_single_copy_end."', '".$sent_duplex_copy."', '".$sent_duplex_copy_start."', '".$sent_duplex_copy_end."', '".$sent_num_page."', '".$sent_checked."', '".$sent_other."', '".$newnamefile."', '".$teacher_id."', '".$sub_id."')";
+			$query = mysqli_query($conn, $sql);
+			if($query) {
+				echo "Successfully " . $newnamefile;
+			} else {
+				echo "Failed please re-check your database";
+			}
 		} else {
 			echo "Failed please re check your code.";
 		}
