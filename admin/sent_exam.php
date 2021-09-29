@@ -33,6 +33,33 @@ if(empty($_SESSION['officer'])) {
 	<div class="col py-3">
 		<h1>รายการส่งข้อสอบ</h1>
 		<hr>
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr class="text-center">
+						<th>ลำดับข้อสอบ</th>
+						<th>ชื่อผู้ส่งข้อสอบ</th>
+						<th>ข้อสอบวิชา</th>
+						<th>ปีการศึกษา</th>
+						<th>สถานะการอนุมัติ</th>
+						<th colspan="2">การจัดการ</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="text-center">1</td>
+						<td>Wanchai Saelim</td>
+						<td class="text-center">คอม</td>
+						<td class="text-center">2564</td>
+						<td class="text-center">อนุมัติแล้ว</td>
+						<td colspan="2" class="text-center">
+							<a href="#" class="btn btn-sm btn-secondary">ข้อมูล</a>
+							<a href="#" onclick="return confirm('คุณแน่ใจใช่แล้วหรือไม่? ที่ต้องการลบข้อมูลนี้')" class="btn btn-sm btn-danger">ลบ</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 	<?php include('includes/sidebarContentBottom.inc.php'); ?>
 	<?php include('includes/footer.inc.php'); ?>

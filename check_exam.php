@@ -89,7 +89,7 @@ if(empty($_SESSION['login'])) {
 								<td class="text-center"><?= $list_sent_exam_rows['sub_name']; ?></td>
 								<td class="text-center">13:00</td>
 								<td class="text-center">
-									<a href="#" class="btn btn-secondary"><i class="fas fa-info-circle"></i></a>
+									<a href="check_exam_detail.php?infodetail=<?= $list_sent_exam_rows['sent_no']; ?>" class="btn btn-secondary"><i class="fas fa-info-circle"></i></a>
 								</td>
 							</tr>
 							<?php } ?>
