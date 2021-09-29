@@ -40,7 +40,10 @@ if(isset($_POST['sent_exam'])) {
 			$sql = "INSERT INTO sent_exam (sent_term, sent_year, sent_time_exam, sent_date_exam, sent_answersheet, sent_twopage_book, sent_fourpage_book, sent_single_copy, sent_single_copy_start, sent_single_copy_end, sent_duplex_copy, sent_duplex_copy_start, sent_duplex_copy_end, sent_num_page, sent_checked, sent_other, sent_files, teacher_id, sub_id) VALUES ('".$sent_term."', '".$sent_year."', '".$sent_time_exam."', '".$sent_date_exam."', '".$sent_answersheet."', '".$sent_twopage_book."', '".$sent_fourpage_book."', '".$sent_single_copy."', '".$sent_single_copy_start."', '".$sent_single_copy_end."', '".$sent_duplex_copy."', '".$sent_duplex_copy_start."', '".$sent_duplex_copy_end."', '".$sent_num_page."', '".$sent_checked."', '".$sent_other."', '".$newnamefile."', '".$teacher_id."', '".$sub_id."')";
 			$query = mysqli_query($conn, $sql);
 			if($query) {
-				echo "Successfully " . $newnamefile;
+				echo '<script>
+				alert("ส่งข้อสอบเสร็จสิ้น");
+				window.location.href = "check_exam.php";
+				</script>';
 			} else {
 				echo "Failed please re-check your database";
 			}
