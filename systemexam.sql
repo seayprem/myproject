@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2021 at 08:11 AM
+-- Generation Time: Sep 29, 2021 at 12:16 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -64,7 +64,7 @@ INSERT INTO `officers` (`officer_id`, `officer_user`, `officer_pass`, `officer_f
 --
 
 CREATE TABLE `sent_exam` (
-  `sent_no` varchar(15) NOT NULL,
+  `sent_no` int(11) NOT NULL,
   `sent_term` int(2) NOT NULL,
   `sent_year` int(5) NOT NULL,
   `sent_time_exam` text NOT NULL,
@@ -233,6 +233,12 @@ ALTER TABLE `teachers`
 --
 ALTER TABLE `associate`
   MODIFY `ass_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sent_exam`
+--
+ALTER TABLE `sent_exam`
+  MODIFY `sent_no` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `take_exam`
