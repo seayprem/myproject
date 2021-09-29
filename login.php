@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if($_SESSION['login']) {
+if(!empty($_SESSION['login'])) {
 	header("Location: index.php");
 }
 ?>
