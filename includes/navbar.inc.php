@@ -22,7 +22,7 @@
 					<a href="index.php" class="nav-link"><i class="fas fa-home"></i> หน้าหลัก</a>
 				</li>
 				<li class="nav-item">
-					<a href="#" class="nav-link"><i class="fas fa-check-circle"></i> ตรวจสอบการส่งข้อสอบ</a>
+					<a href="myexam.php" class="nav-link"><i class="fas fa-check-circle"></i> ตรวจสอบการส่งข้อสอบ</a>
 				</li>
 				<li class="nav-item">
 					<a href="profile.php" class="nav-link"><i class="fas fa-user"></i> <?= $_SESSION['login']; ?> </a>

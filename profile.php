@@ -1,4 +1,5 @@
 <?php 
+include('config/db.php');
 session_start();
 if(empty($_SESSION['login'])) {
 	header("Location: login.php");
@@ -45,6 +46,11 @@ $position = $_SESSION['position'];
 		<h3 class="text-center mt-5">ข้อมูลส่วนตัว</h3>
 		<hr>
 	</div>
+	<?php 
+	$sql = "SELECT * FROM teachers WHERE teacher_id = '".$_SESSION['ids']."'";
+	$query = mysqli_query($conn, $sql);
+	$row = mysqli_fetch_assoc($query);
+	?>
 
 	<div class="container">
 		<div class="d-flex align-items-start">
@@ -67,21 +73,21 @@ $position = $_SESSION['position'];
 						<div class="col-md-6">
 							<div class="mb-3">
 								<label class="form-label">ชื่อจริง</label>
-								<input type="text" class="form-control" value="<?= $_SESSION['fname']; ?>" disabled>
+								<input type="text" class="form-control" value="<?= $row['teacher_fname']; ?>" disabled>
 							</div>
 
 						</div>
 						<div class="col-md-6">
 							<div class="mb-3">
 								<label class="form-label">นามสกุล</label>
-								<input type="text" class="form-control" value="<?= $_SESSION['lname']; ?>" disabled>
+								<input type="text" class="form-control" value="<?= $row['teacher_lname']; ?>" disabled>
 							</div>
 
 						</div>
 					</div>
 					<div class="mb-3">
 						<label class="form-label">เบอร์โทร</label>
-						<input type="text" class="form-control" value="<?= $_SESSION['tel']; ?>" disabled>
+						<input type="text" class="form-control" value="<?= $row['teacher_tel']; ?>" disabled>
 					</div>
 					<div class="mb-3">
 						<label class="form-label">ตำแหน่ง</label>
@@ -95,21 +101,21 @@ $position = $_SESSION['position'];
 							<form action="controller/auth/editProfile.php" method="POST">
 							<div class="mb-3">
 								<label class="form-label">ชื่อจริง</label>
-								<input type="text" class="form-control" name="fname" value="<?= $_SESSION['fname']; ?>">
+								<input type="text" class="form-control" name="fname" value="<?= $row['teacher_fname']; ?>">
 							</div>
 
 						</div>
 						<div class="col-md-6">
 							<div class="mb-3">
 								<label class="form-label">นามสกุล</label>
-								<input type="text" class="form-control" name="lname" value="<?= $_SESSION['lname']; ?>">
+								<input type="text" class="form-control" name="lname" value="<?= $row['teacher_lname']; ?>">
 							</div>
 
 						</div>
 					</div>
 					<div class="mb-3">
 						<label class="form-label">เบอร์โทร</label>
-						<input type="text" class="form-control" name="tel" value="<?=  $_SESSION['tel']; ?>">
+						<input type="text" class="form-control" name="tel" value="<?= $row['teacher_tel']; ?>">
 					</div>
 					<input type="hidden" name="ids" value="<?= $_SESSION['ids']; ?>">
 					<div class="d-grid gap-2">
