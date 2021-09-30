@@ -126,11 +126,11 @@ if(empty($_SESSION['login'])) {
 				</div>
 			</div>
 			<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-				<h5>สถานะตอนนี้: <b><?php
+				<h5>สถานะตอนนี้: <?php
 				if($row['sent_checked'] == 1) {
-					echo "อนุมัติข้อสอบแล้ว";
+					echo "<b class='text-success'>อนุมัติข้อสอบแล้ว</b></h5>";
 				} else if($row['sent_checked'] == 2) {
-					echo "ไม่อนุมัติข้อสอบ";
+					echo "<b class='text-danger'>ไม่อนุมัติข้อสอบ</b></h5>";
 				} else {
 					echo "ยังไม่ได้ตรวจข้อสอบ";
 				}

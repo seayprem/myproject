@@ -17,7 +17,16 @@ if(empty($_SESSION['login'])) {
 }
 $counts_sql = "SELECT COUNT(*) AS total FROM sent_exam";
 $counts_query = mysqli_query($conn, $counts_sql);
-$counts_rows = mysqli_fetch_assoc($counts_query)
+$counts_rows = mysqli_fetch_assoc($counts_query);
+
+$counts_accept_sql = "SELECT COUNT(*) AS totalAccept FROM sent_exam WHERE sent_checked = 1";
+$counts_accept_query = mysqli_query($conn, $counts_accept_sql);
+$counts_accept_rows = mysqli_fetch_assoc($counts_accept_query);
+
+$counts_unaccept_sql = "SELECT COUNT(*) AS totalUnAccept FROM sent_exam WHERE sent_checked = 2";
+$counts_unaccept_query = mysqli_query($conn, $counts_unaccept_sql);
+$counts_unaccept_rows = mysqli_fetch_assoc($counts_unaccept_query);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,7 +98,7 @@ $counts_rows = mysqli_fetch_assoc($counts_query)
 							} else {
 							?>
 							<?php 
-								$list_sent_exam_sql = "SELECT sent_exam.sent_no, teachers.teacher_fname, teachers.teacher_lname, subjects.sub_name FROM sent_exam INNER JOIN teachers ON sent_exam.teacher_id = teachers.teacher_id INNER JOIN subjects ON sent_exam.sub_id = subjects.sub_id ORDER BY sent_exam.sent_no DESC";
+								$list_sent_exam_sql = "SELECT sent_exam.sent_no, teachers.teacher_fname, teachers.teacher_lname, subjects.sub_name FROM sent_exam INNER JOIN teachers ON sent_exam.teacher_id = teachers.teacher_id INNER JOIN subjects ON sent_exam.sub_id = subjects.sub_id WHERE sent_checked = 0 ORDER BY sent_exam.sent_no DESC";
 								$list_sent_exam_query = mysqli_query($conn, $list_sent_exam_sql);
 								while($list_sent_exam_rows = mysqli_fetch_assoc($list_sent_exam_query)) {
 
@@ -128,10 +137,24 @@ $counts_rows = mysqli_fetch_assoc($counts_query)
 							</tr>
 						</thead>
 						<tbody>
+							<?php 
+
+								if($counts_accept_rows['totalAccept'] == 0) {
+									echo '
+									<tr>
+										<td class="text-center" colspan="6">ไม่พบข้อมูล</td>	
+									</tr>	
+									';
+								} else {
+
+								$accept_sql = "SELECT sent_exam.sent_no, teachers.teacher_fname, teachers.teacher_lname, subjects.sub_name FROM sent_exam INNER JOIN teachers ON sent_exam.teacher_id = teachers.teacher_id INNER JOIN subjects ON sent_exam.sub_id = subjects.sub_id WHERE sent_checked = 1 ORDER BY sent_exam.sent_no DESC";
+								$accept_query = mysqli_query($conn, $accept_sql);
+								while($accept_row = mysqli_fetch_assoc($accept_query)) {
+							?>
 							<tr>
-								<td class="text-center">1</td>
-								<td>วันชัย แซ่ลิ้ม</td>
-								<td class="text-center">โปรแกรมเมอร์</td>
+								<td class="text-center"><?= $accept_row['sent_no']; ?></td>
+								<td><?= $accept_row['teacher_fname'] . ' ' . $accept_row['teacher_lname']; ?></td>
+								<td class="text-center"><?= $accept_row['sub_name']; ?></td>
 								<td class="text-center">13:00</td>
 								<td class="text-center">
 									<a href="#" class="btn btn-secondary">ดูข้อมูล</a>
@@ -140,6 +163,8 @@ $counts_rows = mysqli_fetch_assoc($counts_query)
 									<p class="text-success">อนุมัติแล้ว</p>
 								</td>
 							</tr>
+							<?php } ?>
+						<?php } ?>
 						</tbody>
 					</table>
 				</div>
@@ -160,10 +185,24 @@ $counts_rows = mysqli_fetch_assoc($counts_query)
 							</tr>
 						</thead>
 						<tbody>
+							<?php 
+								if($counts_unaccept_rows['totalUnAccept'] == 0) {
+									echo '
+									<tr>
+										<td class="text-center" colspan="6">ไม่พบข้อมูล</td>	
+									</tr>	
+									';
+								} else {
+
+								
+								$unaccept_sql = "SELECT sent_exam.sent_no, teachers.teacher_fname, teachers.teacher_lname, subjects.sub_name FROM sent_exam INNER JOIN teachers ON sent_exam.teacher_id = teachers.teacher_id INNER JOIN subjects ON sent_exam.sub_id = subjects.sub_id WHERE sent_checked = 2 ORDER BY sent_exam.sent_no DESC";
+								$unaccept_query = mysqli_query($conn, $unaccept_sql);
+								while($unaccept_row = mysqli_fetch_assoc($unaccept_query)) {
+							?>
 							<tr>
-								<td class="text-center">1</td>
-								<td>วันชัย แซ่ลิ้ม</td>
-								<td class="text-center">โปรแกรมเมอร์</td>
+								<td class="text-center"><?= $unaccept_row['sent_no']; ?></td>
+								<td><?= $unaccept_row['teacher_fname'] . ' ' . $unaccept_row['teacher_lname']; ?></td>
+								<td class="text-center"><?= $unaccept_row['sub_name'] ?></td>
 								<td class="text-center">13:00</td>
 								<td class="text-center">
 									<a href="#" class="btn btn-secondary">ดูข้อมูล</a>
@@ -172,6 +211,8 @@ $counts_rows = mysqli_fetch_assoc($counts_query)
 									<p class="text-danger">ไม่ผ่านการอนุมัติ</p>
 								</td>
 							</tr>
+							<?php } ?>
+						<?php } ?>
 						</tbody>
 					</table>
 				</div>

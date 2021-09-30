@@ -135,8 +135,11 @@ if(empty($_SESSION['login'])) {
 			<div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
 				<h4 class="text-center">การอนุมัติข้อสอบ</h4>
 				<div class="text-center">
-					<a href="#" onclick="return confirm('คุณแน่ใจใช่แล้วหรือไม่ที่ต้องการอนุมัติข้อสอบชุดนี้');" class="btn btn-success btn-lg">อนุมัติ</a>
-					<a href="#" onclick="return confirm('คุณแน่ใจใช่แล้วหรือไม่ที่ต้องการไม่อนุมัติข้อสอบชุดนี้');"class="btn btn-danger btn-lg">ไม่อนุมัติ</a>
+					<form action="controller/confirmexam.php" method="POST">
+						<button type="submit" onclick="return confirm('คุณแน่ใจใช่แล้วหรือไม่ที่ต้องการอนุมัติข้อสอบชุดนี้');" class="btn btn-success btn-lg" value="1" name="accept">อนุมัติ</button>
+						<button type="submit" onclick="return confirm('คุณแน่ใจใช่แล้วหรือไม่ที่ต้องการไม่อนุมัติข้อสอบชุดนี้');"class="btn btn-danger btn-lg" value="2" name="accept">ไม่อนุมัติ</button>
+						<input type="hidden" name="id" value="<?= $row['sent_no']; ?>">
+					</form>
 				</div>
 			</div>
 		</div>

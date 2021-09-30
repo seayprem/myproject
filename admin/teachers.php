@@ -185,6 +185,16 @@ if(empty($_SESSION['officer'])) {
 						</thead>
 						<tbody>
 							<?php 
+							$count_sql = "SELECT COUNT(*) AS countTeachers FROM teachers";
+							$count_query = mysqli_query($conn, $count_sql);
+							$count_row = mysqli_fetch_assoc($count_query);
+							if($count_row['countTeachers'] == 0) {
+								echo '<tr>
+									<td class="text-center" colspan="5">ไม่พบข้อมูล</td>	
+								</tr>';
+							} else {
+
+							
 							$sql = "SELECT * FROM teachers";
 							$query = mysqli_query($conn, $sql);
 							while($row = mysqli_fetch_assoc($query)) {
@@ -203,6 +213,7 @@ if(empty($_SESSION['officer'])) {
 								</td>
 							</tr>
 							<?php } ?>
+						<?php } ?>
 						</tbody>
 					</table>
 				</div>

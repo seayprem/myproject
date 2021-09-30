@@ -39,7 +39,8 @@ if(empty($_SESSION['officer'])) {
 			<a href="class.php?show=add" class="btn btn-is">เพิ่มข้อมูล</a>
 		</div>
 
-		<br>
+		<h5 class="text-center">ห้องเรียน</h5>
+
 
 		<!-- ADD -->
 		<?php 
@@ -172,6 +173,16 @@ if(empty($_SESSION['officer'])) {
 				</thead>
 				<tbody>
 					<?php 
+					$count_sql = "SELECT COUNT(*) AS totalClass FROM students_class";
+					$count_query = mysqli_query($conn, $count_sql);
+					$count_row = mysqli_fetch_assoc($count_query);
+					if($count_row['totalClass'] == 0) {
+						echo '<tr>
+							<td class="text-center" colspan="5">ไม่พบข้อมูล</td>	
+						</tr>';
+					} else {
+
+					
 					$sql = "SELECT * FROM students_class";
 					$query = mysqli_query($conn, $sql);
 					while($row = mysqli_fetch_assoc($query)) {
@@ -187,6 +198,7 @@ if(empty($_SESSION['officer'])) {
 						</td>
 					</tr>
 					<?php } ?>
+				<?php } ?>
 				</tbody>
 			</table>
 		</div>

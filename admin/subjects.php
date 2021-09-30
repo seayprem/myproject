@@ -126,19 +126,21 @@ if(empty($_SESSION['officer'])) {
 						</thead>
 						<tbody>
 							<?php 
-							$page_start = 0;
-							$page_end = 0;
-							$active = '';
-							if(empty(isset($_GET['pageno']))) {
+								$count_sql = "SELECT COUNT(*) as totalSubjects FROM subjects";
+								$count_query = mysqli_query($conn, $count_sql);
+								$count_row = mysqli_fetch_assoc($count_query);
+								if($count_row['totalSubjects'] == 0) {
+									echo '<tr>
+										<td class="text-center" colspan="4">ไม่พบข้อมูล</td>	
+									</tr>';
+								} else {
+
+								
 								$sql = "SELECT * FROM subjects";
 								$query = mysqli_query($conn, $sql);
 								$active = 'active';
-							} else {
-								$sql = "SELECT * FROM subjects LIMIT 5";
-								$query = mysqli_query($conn, $sql);
-							}
 							
-							while($row = mysqli_fetch_assoc($query)) {
+								while($row = mysqli_fetch_assoc($query)) {
 
 							
 							?>
@@ -152,6 +154,7 @@ if(empty($_SESSION['officer'])) {
 								</td>
 							</tr>
 							<?php } ?>
+						<?php } ?>
 						</tbody>
 					</table>
 					<!-- <ul class="pagination justify-content-center">
