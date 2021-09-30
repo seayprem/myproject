@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2021 at 12:16 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.20
+-- Generation Time: Sep 30, 2021 at 08:50 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 7.4.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -215,8 +215,8 @@ ALTER TABLE `subjects`
 --
 ALTER TABLE `take_exam`
   ADD PRIMARY KEY (`take_no`),
-  ADD KEY `officer_fk1` (`officer_id`),
-  ADD KEY `sent_fk1` (`sent_no`);
+  ADD KEY `take_exam_fk1_officer` (`officer_id`),
+  ADD KEY `take_exam_fk1_sentexam` (`sent_no`);
 
 --
 -- Indexes for table `teachers`
@@ -274,8 +274,8 @@ ALTER TABLE `students_class`
 -- Constraints for table `take_exam`
 --
 ALTER TABLE `take_exam`
-  ADD CONSTRAINT `officer_fk1` FOREIGN KEY (`officer_id`) REFERENCES `officers` (`officer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `sent_fk1` FOREIGN KEY (`sent_no`) REFERENCES `sent_no` (`sent_no`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `take_exam_fk1_officer` FOREIGN KEY (`officer_id`) REFERENCES `officers` (`officer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `take_exam_fk1_sentexam` FOREIGN KEY (`sent_no`) REFERENCES `sent_exam` (`sent_no`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
