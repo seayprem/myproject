@@ -222,25 +222,25 @@ $position = $_SESSION['position'];
 						<b>เลือกประเภทกระดาษคำตอบ</b>
 						<br>
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="sent_answersheet" value="กากบาท" id="flexCheckDefault">
+							<input class="form-check-input" type="checkbox" name="sent_answersheet_1" value="กากบาท" id="flexCheckDefault">
 							<label class="form-check-label" for="flexCheckDefault">
 								กากบาท
 							</label>
 						</div>
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="sent_answersheet" value="สมุดแบบเส้น" id="flexCheckDefault">
+							<input class="form-check-input" type="checkbox" name="sent_answersheet_2" value="สมุดแบบเส้น" id="flexCheckDefault">
 							<label class="form-check-label" for="flexCheckDefault">
 								สมุดแบบเส้น
 							</label>
 						</div>		
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="sent_answersheet" value="แบบเขียน" id="flexCheckDefault">
+							<input class="form-check-input" type="checkbox" name="sent_answersheet_3" value="แบบเขียน" id="flexCheckDefault">
 							<label class="form-check-label" for="flexCheckDefault">
 								แบบเขียน
 							</label>
 						</div>		
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" name="sent_answersheet" value="กระดาษกราฟ" id="flexCheckDefault">
+							<input class="form-check-input" type="checkbox" name="sent_answersheet_4" value="กระดาษกราฟ" id="flexCheckDefault">
 							<label class="form-check-label" for="flexCheckDefault">
 								กระดาษกราฟ
 							</label>

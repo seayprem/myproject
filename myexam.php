@@ -82,7 +82,7 @@ $counts_rows = mysqli_fetch_assoc($counts_query);
 							?>
 						</td>
 						<td class="text-center">
-							<a href="#" class="btn btn-secondary btn-sm">รายละเอียด</a>
+							<a href="myexam_detail.php?infodetail=<?= $row['sent_no']; ?>" class="btn btn-secondary btn-sm">รายละเอียด</a>
 						</td>
 					</tr>
 					<?php } ?>

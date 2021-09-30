@@ -47,7 +47,7 @@ if(empty($_SESSION['login'])) {
 	<?php 
 		if($_GET['infodetail'])	{
 			$infodetail = $_GET['infodetail'];
-			$sql = "SELECT * FROM sent_exam INNER JOIN teachers ON sent_exam.teacher_id = teachers.teacher_id INNER JOIN subjects ON sent_exam.sub_id = subjects.sub_id ORDER BY sent_exam.sent_no DESC";
+			$sql = "SELECT * FROM sent_exam INNER JOIN teachers ON sent_exam.teacher_id = teachers.teacher_id INNER JOIN subjects ON sent_exam.sub_id = subjects.sub_id WHERE sent_exam.sent_no = '".$infodetail."' ORDER BY sent_exam.sent_no DESC";
 			$query = mysqli_query($conn, $sql);
 			$row = mysqli_fetch_assoc($query);
 		} else {
