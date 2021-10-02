@@ -209,7 +209,7 @@ if(empty($_SESSION['officer'])) {
 								<td colspan="3">
 									<a href="teachers.php?info=<?= $row['teacher_id']; ?>" class="btn btn-secondary btn-sm"><i class="fas fa-info-circle"></i></a>
 									<a href="teachers.php?edit=<?= $row['teacher_id']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-									<a href="controller/teacherDelete.php?id=<?= $row['teacher_id']; ?>" onclick="confirm('คุณแน่ใจใช่หรือไม่? ที่จะลบ <?= $row['teacher_fname']; ?> ออก')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+									<a href="controller/teacherDelete.php?id=<?= $row['teacher_id']; ?>" onclick="return confirm('คุณแน่ใจใช่หรือไม่? ที่จะลบ <?= $row['teacher_fname']; ?> ออก')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
 								</td>
 							</tr>
 							<?php } ?>

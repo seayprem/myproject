@@ -150,7 +150,7 @@ if(empty($_SESSION['officer'])) {
 								<td class="text-center"><?= $row['sub_credit']; ?></td>
 								<td colspan="2" class="text-center">
 									<a href="subjects.php?edit=<?= $row['sub_id']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
-									<a href="controller/subjectDelete.php?id=<?= $row['sub_id']; ?>" onclick="confirm('คุณแน่ใจใช่หรือไม่? ที่จะลบ <?= $row['sub_name']; ?> ออก')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+									<a href="controller/subjectDelete.php?id=<?= $row['sub_id']; ?>" onclick="return confirm('คุณแน่ใจใช่หรือไม่? ที่จะลบ <?= $row['sub_name']; ?> ออก')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
 								</td>
 							</tr>
 							<?php } ?>
