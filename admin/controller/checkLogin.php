@@ -10,7 +10,7 @@ if(isset($_POST['login'])) {
 
 	$sql = "SELECT * FROM `officers` WHERE officer_user = '".$username."' AND officer_pass = '".$hash."'";
 	$query = mysqli_query($conn, $sql);
-	if(mysqli_num_rows($query)) {
+	if(mysqli_num_rows($query) == 1) {
 		$row = mysqli_fetch_array($query);
 		$_SESSION['officer'] = $row['officer_fname'] . " " . $row['officer_lname'];
 		$_SESSION['start'] = time(); // ล็อคอินตอนนี้

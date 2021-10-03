@@ -10,7 +10,7 @@ if(isset($_POST['login'])) {
 
 	$sql = "SELECT * FROM `teachers` WHERE teacher_user = '".$username."' AND teacher_pass = '".$hash."'";
 	$query = mysqli_query($conn, $sql);
-	if(mysqli_num_rows($query)) {
+	if(mysqli_num_rows($query) == 1) {
 		$row = mysqli_fetch_array($query);
 		$_SESSION['login'] = $row['teacher_fname'] . " " . $row['teacher_lname'];
 		$_SESSION['position'] = $row['teacher_position'];
