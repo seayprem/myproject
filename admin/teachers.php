@@ -177,10 +177,14 @@ if(empty($_SESSION['officer'])) {
 				<h5 class="text-center">ข้อมูลอาจารย์</h5>
 
 				<!-- Searching -->
-				<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="ค้นหาข้อมูล รหัสประจำตัว ชื่อ นามสกุล เบอร์โทร" aria-label="Recipient's username" aria-describedby="button-addon2">
-					<button class="btn btn-outline-secondary" type="button" id="button-addon2">ค้นหาข้อมูล</button>
-				</div>
+				<form action="teachers.php?search" method="GET">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" name="search" placeholder="ค้นหาข้อมูล รหัสประจำตัว ชื่อ นามสกุล เบอร์โทร" aria-label="Recipient's username" aria-describedby="button-addon2">
+						<button class="btn btn-outline-secondary" type="submit" id="button-addon2">ค้นหาข้อมูล</button>
+						<a href="teachers.php" class="btn btn-outline-secondary" id="button-addon2">รีเฟรชข้อมูล</a>
+					</div>
+
+				</form>
 				<!-- Searching -->
 				<div class="table-responsive">
 					<table class="table">
@@ -202,6 +206,27 @@ if(empty($_SESSION['officer'])) {
 								echo '<tr>
 									<td class="text-center" colspan="5">ไม่พบข้อมูล</td>	
 								</tr>';
+							} else if(isset($_GET['search'])) {
+									$search_id = $_GET['search'];
+									$search_sql = "SELECT * FROM teachers WHERE teacher_id LIKE '%".$search_id."%' OR teacher_fname LIKE '%".$search_id."%' OR teacher_lname LIKE '%".$search_id."%' OR teacher_tel LIKE '%".$search_id."%'";
+									$search_query = mysqli_query($conn, $search_sql);
+									while($search_row = mysqli_fetch_assoc($search_query)) {
+
+									
+							?>
+							<tr class="text-center" id="tables">
+								<td><?= $search_row['teacher_id']; ?></td>
+								<td><?= $search_row['teacher_fname']; ?></td>
+								<td><?= $search_row['teacher_lname']; ?></td>
+								<td><?= $search_row['teacher_tel']; ?></td>
+								<td colspan="3">
+									<a href="teachers.php?info=<?= $search_row['teacher_id']; ?>" class="btn btn-secondary btn-sm"><i class="fas fa-info-circle"></i></a>
+									<a href="teachers.php?edit=<?= $search_row['teacher_id']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+									<a href="controller/teacherDelete.php?id=<?= $search_row['teacher_id']; ?>" onclick="return confirm('คุณแน่ใจใช่หรือไม่? ที่จะลบ <?= $search_row['teacher_fname']; ?> ออก')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+								</td>
+							</tr>
+							<?php
+								}
 							} else {
 
 							
@@ -227,6 +252,7 @@ if(empty($_SESSION['officer'])) {
 						</tbody>
 					</table>
 				</div>
+				<!-- Table -->
 			</div>
 			</div>
 		</div>
