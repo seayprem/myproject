@@ -35,9 +35,12 @@ if(empty($_SESSION['officer'])) {
 		<h1>อาจารย์</h1>
 		<hr>
 
+
 		<div class="text-right">
 			<a href="teachers.php?show=add" class="btn btn-is">เพิ่มข้อมูล</a>
 		</div>
+
+
 
 		<!-- add  -->
 		<?php 
@@ -172,6 +175,13 @@ if(empty($_SESSION['officer'])) {
 		<div class="row">
 			<div class="col-md-12">
 				<h5 class="text-center">ข้อมูลอาจารย์</h5>
+
+				<!-- Searching -->
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="ค้นหาข้อมูล รหัสประจำตัว ชื่อ นามสกุล เบอร์โทร" aria-label="Recipient's username" aria-describedby="button-addon2">
+					<button class="btn btn-outline-secondary" type="button" id="button-addon2">ค้นหาข้อมูล</button>
+				</div>
+				<!-- Searching -->
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
@@ -201,7 +211,7 @@ if(empty($_SESSION['officer'])) {
 
 							
 							?>
-							<tr class="text-center">
+							<tr class="text-center" id="tables">
 								<td><?= $row['teacher_id']; ?></td>
 								<td><?= $row['teacher_fname']; ?></td>
 								<td><?= $row['teacher_lname']; ?></td>

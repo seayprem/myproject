@@ -33,6 +33,13 @@ if(empty($_SESSION['officer'])) {
 	<div class="col py-3">
 		<h1>รายการส่งข้อสอบ</h1>
 		<hr>
+
+		<!-- Searching -->
+		<div class="input-group mb-3">
+			<input type="text" class="form-control" placeholder="ค้นหาข้อมูล ชื่อผู้ส่งข้อสอบ ชื่อวิชา" aria-label="Recipient's username" aria-describedby="button-addon2">
+			<button class="btn btn-outline-secondary" type="button" id="button-addon2">ค้นหาข้อมูล</button>
+		</div>
+		<!-- Searching -->
 		<div class="table-responsive">
 			<table class="table table-hover">
 				<thead>

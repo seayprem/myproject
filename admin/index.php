@@ -82,7 +82,7 @@ $count_row_take_exam = mysqli_fetch_assoc($count_query_take_exam);
 			]);
 
 			// Set chart options
-			var options = {'title':'ยอดขายสมาร์ทโฟน',
+			var options = {'title':'ข้อมูลต่างๆในแผงควบคุม',
 											'width':'auto',
 											'height':300,
 										//  'is3D': true,

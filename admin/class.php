@@ -160,6 +160,13 @@ if(empty($_SESSION['officer'])) {
 		<?php } ?>
 
 
+
+		<!-- Searching -->
+		<div class="input-group mb-3">
+			<input type="text" class="form-control" placeholder="ค้นหาข้อมูล รหัสห้องเรียน รหัสวิชา" aria-label="Recipient's username" aria-describedby="button-addon2">
+			<button class="btn btn-outline-secondary" type="button" id="button-addon2">ค้นหาข้อมูล</button>
+		</div>
+		<!-- Searching -->
 		<div class="table-responsive">
 			<table class="table">
 				<thead>
