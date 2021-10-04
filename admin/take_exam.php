@@ -34,6 +34,11 @@ if(empty($_SESSION['officer'])) {
 	<div class="col py-3">
 		<h1>รายการรับข้อสอบ</h1>
 		<hr>
+		<div class="text-right">
+			<div class="mb-3">
+				<a href="mpdf.php" target="_blank" class="btn btn-success">รายงาน</a>
+			</div>
+		</div>
 
 		<!-- INFO  -->
 		<?php
