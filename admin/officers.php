@@ -96,7 +96,7 @@ if(empty($_SESSION['officer'])) {
 				$update_sql = "UPDATE officers SET officer_id = '".$officer_id."', officer_user = '".$officer_user."', officer_pass = '".$officer_pass."', officer_fname = '".$officer_fname."', officer_lname = '".$officer_lname."', officer_tel = '".$officer_tel."' WHERE officer_id = '".$officer_id."'";
 				$update_query = mysqli_query($conn, $update_sql);
 				if($update_query) {
-					header("Location: officers.php");
+					echo '<script>alert("แก้ไขข้อมูลสำเร็จ"); window.location.href="officers.php"</script>';
 				} else {
 					echo '<script>alert("ล้มเหลว กรุณาลองใหม่อีกครั้ง"); window.location.href="officers.php"</script>';
 				}

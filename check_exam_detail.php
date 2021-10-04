@@ -89,7 +89,15 @@ if(empty($_SESSION['login'])) {
 						<p><b>วันที่สอบ: </b><?= $row['sent_date_exam']; ?></p>
 					</div>
 					<div class="col-md-4">
-						<p><b>ความต้องการกระดาษคำตอบ: </b><?= $row['sent_answersheet']; ?></p>
+						<p><b>ความต้องการกระดาษคำตอบ: </b>
+						<?php
+							if(empty($row['sent_answersheet']))	{
+								echo "ไม่ต้องการ";
+							} else {
+								echo $row['sent_answersheet'];
+							}
+						?>	
+						</p>
 						<p><b>การจัดเย็บข้อสอบหน้าเดียว: </b><?php 
 							if($row['sent_single_copy'] == 1)	{
 								echo "ต้องการจากหน้า " . $row['sent_single_copy_start'] . " ถึง " . $row['sent_single_copy_end'];

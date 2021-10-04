@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2021 at 08:50 AM
+-- Generation Time: Oct 04, 2021 at 12:39 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.23
 
@@ -32,7 +32,7 @@ CREATE TABLE `associate` (
   `ass_num_regis` varchar(64) NOT NULL,
   `ass_date_regis` varchar(64) NOT NULL,
   `sub_id` varchar(15) NOT NULL,
-  `class_id` varchar(15) NOT NULL
+  `class_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -55,7 +55,7 @@ CREATE TABLE `officers` (
 --
 
 INSERT INTO `officers` (`officer_id`, `officer_user`, `officer_pass`, `officer_fname`, `officer_lname`, `officer_tel`) VALUES
-('64152210046-9', 'wanchai.sa', '1d67112226ca211d4e454b1cd64fdc1a9870275b', 'Wanchai', 'Saelim', 979645941);
+('administrator', 'admin', 'eb453f1d8d7be0f1d3eb1213ce3904f63467171f', 'administrator', 'system', 123456789);
 
 -- --------------------------------------------------------
 
@@ -93,9 +93,10 @@ CREATE TABLE `sent_exam` (
 --
 
 CREATE TABLE `students_class` (
-  `class_id` varchar(15) NOT NULL,
-  `class_amount` int(5) NOT NULL,
-  `class_year` int(2) NOT NULL,
+  `class_id` int(11) NOT NULL,
+  `class_code` varchar(15) NOT NULL,
+  `class_amount` int(11) NOT NULL,
+  `class_year` int(11) NOT NULL,
   `sub_id` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -168,8 +169,8 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`teacher_id`, `teacher_user`, `teacher_pass`, `teacher_fname`, `teacher_lname`, `teacher_tel`, `teacher_position`) VALUES
-('64152210046-9', 'wanchai.sa', '1d67112226ca211d4e454b1cd64fdc1a9870275b', 'Wanchai', 'Saelim', 979645941, 'หัวหน้าโปรแกรมวิชา'),
-('user', 'user', '0caba15064170407c388b773f894fcc7651e9e65', 'users', 'user', 123213, 'หัวหน้าโปรแกรม');
+('header', 'header', '67045742c7e539cbddd650bae94110568718bd31', 'header', 'header', 123456789, 'หัวหน้าโปรแกรมวิชา'),
+('user', 'user', '0caba15064170407c388b773f894fcc7651e9e65', 'user', 'user', 123456789, 'อาจารย์');
 
 --
 -- Indexes for dumped tables
@@ -180,8 +181,8 @@ INSERT INTO `teachers` (`teacher_id`, `teacher_user`, `teacher_pass`, `teacher_f
 --
 ALTER TABLE `associate`
   ADD PRIMARY KEY (`ass_id`),
-  ADD KEY `sub_fk2` (`sub_id`),
-  ADD KEY `class_fk1` (`class_id`);
+  ADD KEY `associate_class_id_fk1` (`class_id`),
+  ADD KEY `associate_subject_id_fk1` (`sub_id`);
 
 --
 -- Indexes for table `officers`
@@ -202,7 +203,7 @@ ALTER TABLE `sent_exam`
 --
 ALTER TABLE `students_class`
   ADD PRIMARY KEY (`class_id`),
-  ADD KEY `sub_fk1` (`sub_id`);
+  ADD KEY `student_class_fk1_to_subject` (`sub_id`);
 
 --
 -- Indexes for table `subjects`
@@ -241,6 +242,12 @@ ALTER TABLE `sent_exam`
   MODIFY `sent_no` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `students_class`
+--
+ALTER TABLE `students_class`
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `take_exam`
 --
 ALTER TABLE `take_exam`
@@ -254,8 +261,8 @@ ALTER TABLE `take_exam`
 -- Constraints for table `associate`
 --
 ALTER TABLE `associate`
-  ADD CONSTRAINT `class_fk1` FOREIGN KEY (`class_id`) REFERENCES `students_class` (`class_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `sub_fk2` FOREIGN KEY (`sub_id`) REFERENCES `subjects` (`sub_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `associate_class_id_fk1` FOREIGN KEY (`class_id`) REFERENCES `students_class` (`class_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `associate_subject_id_fk1` FOREIGN KEY (`sub_id`) REFERENCES `subjects` (`sub_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `sent_exam`
@@ -268,7 +275,7 @@ ALTER TABLE `sent_exam`
 -- Constraints for table `students_class`
 --
 ALTER TABLE `students_class`
-  ADD CONSTRAINT `sub_fk1` FOREIGN KEY (`sub_id`) REFERENCES `subjects` (`sub_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `student_class_fk1_to_subject` FOREIGN KEY (`sub_id`) REFERENCES `subjects` (`sub_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `take_exam`

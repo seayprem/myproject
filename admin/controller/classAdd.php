@@ -6,7 +6,7 @@ if(isset($_POST['add'])) {
 	$year = $_POST['class_year'];
 	$sub_id = $_POST['sub_id'];
 
-	$sql = "INSERT INTO students_class(class_id, class_amount, class_year, sub_id) VALUES('".$id."', '".$amount."', '".$year."', '".$sub_id."')";
+	$sql = "INSERT INTO students_class(class_code, class_amount, class_year, sub_id) VALUES('".$id."', '".$amount."', '".$year."', '".$sub_id."')";
 	$query = mysqli_query($conn, $sql);
 	if($query) {
 		header("Location: ../class.php");

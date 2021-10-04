@@ -118,7 +118,7 @@ if(empty($_SESSION['officer'])) {
 				</thead>
 				<tbody>
 					<?php 
-					$sql = "SELECT * FROM sent_exam INNER JOIN teachers ON sent_exam.teacher_id = teachers.teacher_id INNER JOIN subjects ON sent_exam.sub_id = subjects.sub_id WHERE sent_exam.sent_checked = 1 OR sent_exam.sent_checked = 2";
+					$sql = "SELECT * FROM sent_exam INNER JOIN teachers ON sent_exam.teacher_id = teachers.teacher_id INNER JOIN subjects ON sent_exam.sub_id = subjects.sub_id WHERE sent_exam.sent_checked = 0 OR sent_exam.sent_checked = 1 OR sent_exam.sent_checked = 2";
 					$query = mysqli_query($conn, $sql);
 					$numrows = mysqli_num_rows($query);
 					if($numrows == 0) {
@@ -157,7 +157,7 @@ if(empty($_SESSION['officer'])) {
 								</td>
 								<td colspan="2" class="text-center">
 									<a href="sent_exam.php?info=<?= $search_row['sent_no']; ?>" class="btn btn-sm btn-secondary">ข้อมูล</a>
-									<a href="#" onclick="return confirm('คุณแน่ใจใช่แล้วหรือไม่? ที่ต้องการรับข้อสอบ')"  class="btn btn-sm btn-secondary">รับข้อสอบ</a>
+									<a href="controller/takeexamAccept.php?id=<?= $row['sent_no']; ?>&officer_id=<?= $_SESSION['id']; ?>" onclick="return confirm('คุณแน่ใจใช่แล้วหรือไม่? ที่ต้องการรับข้อสอบ')"  class="btn btn-sm btn-secondary">รับข้อสอบ</a>
 									<a href="#" onclick="return confirm('คุณแน่ใจใช่แล้วหรือไม่? ที่ต้องการลบข้อมูลนี้')" class="btn btn-sm btn-danger">ลบ</a>
 								</td>
 							</tr>

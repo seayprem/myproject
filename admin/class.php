@@ -103,7 +103,7 @@ if(empty($_SESSION['officer'])) {
 				$class_year = $_POST['class_year'];
 				$sub_id = $_POST['sub_id'];
 
-				$update_sql = "UPDATE students_class SET class_id = '".$class_id."', class_amount = '".$class_amount."', class_year = '".$class_year."' WHERE class_id = '".$edit_id."' ";
+				$update_sql = "UPDATE students_class SET class_code = '".$class_id."', class_amount = '".$class_amount."', class_year = '".$class_year."' WHERE class_id = '".$edit_id."' ";
 				$update_query = mysqli_query($conn, $update_sql);
 				if($update_query) {
 					echo '<script>alert("แก้ไข ข้อมูลสำเร็จ"); window.location.href = "class.php"</script>';
@@ -116,7 +116,7 @@ if(empty($_SESSION['officer'])) {
 		<form action="class.php?edit=<?= $edit_row['class_id']; ?>" method="POST">
 		<div class="mb-3">
 				<label class="form-label">รหัสห้องเรียน</label>
-				<input type="text" class="form-control" name="class_id" placeholder="กรุณาป้อนรหัสห้องเรียน" value="<?= $edit_row['class_id']; ?>" required>
+				<input type="text" class="form-control" name="class_id" placeholder="กรุณาป้อนรหัสห้องเรียน" value="<?= $edit_row['class_code']; ?>" required>
 			</div>
 			<div class="mb-3">
 				<label class="form-label">จำนวนนักศึกษา</label>
@@ -193,11 +193,28 @@ if(empty($_SESSION['officer'])) {
 						</tr>';
 					} else if (isset($_GET['search'])) {
 							$search_id = $_GET['search'];
-						
-						?>
+							$search_sql = "SELECT * FROM students_class WHERE class_code LIKE '%".$search_id."%'";
+							$search_query = mysqli_query($conn, $search_sql);
+							if(mysqli_num_rows($search_query) == 0) {
+								echo '<tr><td colspan="5" class="text-center">ไม่พบข้อมูลที่ค้นหา</td></tr>';
+							}
+							while($search_row = mysqli_fetch_assoc($search_query)) {
 
+							
+						?>
+					<tr class="text-center">
+						<td><?= $search_row['class_code']; ?></td>
+						<td><?= $search_row['class_amount']; ?></td>
+						<td><?= $search_row['class_year']; ?></td>
+						<td><?= $search_row['sub_id']; ?></td>
+						<td>
+							<a href="class.php?edit=<?= $search_row['class_id']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+							<a href="controller/classDelete.php?id=<?= $search_row['class_id']; ?>" onclick="return confirm('คุณแน่ใจใช่แล้วหรือไม่? ที่ต้องการลบ')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+						</td>
+					</tr>
 
 				<?php 
+						}
 					} else {
 
 					
@@ -206,7 +223,7 @@ if(empty($_SESSION['officer'])) {
 					while($row = mysqli_fetch_assoc($query)) {
 					?>
 					<tr class="text-center">
-						<td><?= $row['class_id']; ?></td>
+						<td><?= $row['class_code']; ?></td>
 						<td><?= $row['class_amount']; ?></td>
 						<td><?= $row['class_year']; ?></td>
 						<td><?= $row['sub_id']; ?></td>
