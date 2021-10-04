@@ -12,6 +12,7 @@ if(isset($_POST['login'])) {
 	$query = mysqli_query($conn, $sql);
 	if(mysqli_num_rows($query) == 1) {
 		$row = mysqli_fetch_array($query);
+		$_SESSION['id'] = $row['officer_id'];
 		$_SESSION['officer'] = $row['officer_fname'] . " " . $row['officer_lname'];
 		$_SESSION['start'] = time(); // ล็อคอินตอนนี้
 		// จะทำลาย session ภายใน 30 นาที

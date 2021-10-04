@@ -71,23 +71,23 @@ if(empty($_SESSION['officer'])) {
 				</thead>
 				<tbody>
 					<?php
-						$sql = "SELECT * FROM take_exam INNER JOIN officers ON take_exam.officer_id = officers.officer_id INNER JOIN sent_exam ON take_exam.sent_no = sent_exam.sent_no WHERE sent_exam.sent_checked = 3";					 
+						$sql = "SELECT * FROM take_exam INNER JOIN officers ON take_exam.officer_id = officers.officer_id INNER JOIN sent_exam ON take_exam.sent_no = sent_exam.sent_no INNER JOIN teachers ON sent_exam.teacher_id = teachers.teacher_id INNER JOIN subjects ON sent_exam.sub_id = subjects.sub_id WHERE sent_exam.sent_checked = 3";					 
 						$query = mysqli_query($conn, $sql);
 						while($row = mysqli_fetch_assoc($query)) {
 
 						
 					?>
 					<tr>
-						<td><?= $row['sent_no']; ?></td>
+						<td class="text-center"><?= $row['sent_no']; ?></td>
 						<td><?= $row['teacher_fname'] . ' ' . $row['teacher_lname']; ?></td>
 						<td><?= $row['officer_fname'] . ' ' . $row['officer_lname']; ?></td>
-						<td><?= $row['sub_name']; ?></td>
-						<td><?= $row['sent_year']; ?></td>
-						<td><?= $row['take_date']; ?></td>
-						<td colspan="3">
-							<a href="#" class="btn btn-secondary">ดูข้อมูล</a>
-							<a href="#" class="btn btn-success">ปริ้นข้อสอบ</a>
-							<a href="#" class="btn btn-danger">ลบ</a>
+						<td class="text-center"><?= $row['sub_name']; ?></td>
+						<td class="text-center"><?= $row['sent_year']; ?></td>
+						<td class="text-center"><?= $row['take_date']; ?></td>
+						<td colspan="3" class="text-center">
+							<a href="#" class="btn btn-secondary btn-sm">ดูข้อมูล</a>
+							<a href="../assets/files/<?= $row['sent_files']; ?>" target="_blank" class="btn btn-success btn-sm">ปริ้นข้อสอบ</a>
+							<a href="#" onclick="return confirm('ยืนยันที่จะลบใช่หรือไม่?')" class="btn btn-danger btn-sm">ลบ</a>
 						</td>
 					</tr>
 					<?php } ?>
