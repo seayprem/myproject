@@ -35,6 +35,10 @@ $count_row_sent_exam = mysqli_fetch_assoc($count_query_sent_exam);
 $count_sql_take_exam = "SELECT COUNT(*) AS totalTakeExam FROM take_exam";
 $count_query_take_exam = mysqli_query($conn, $count_sql_take_exam);
 $count_row_take_exam = mysqli_fetch_assoc($count_query_take_exam);
+
+
+// Data while loop
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +51,55 @@ $count_row_take_exam = mysqli_fetch_assoc($count_query_take_exam);
 	<?php include('includes/css.inc.php'); ?>
 	<!-- Javascript -->
 	<?php include('includes/js.inc.php'); ?>
+	<!-- AJAX API GOOGLE -->
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+		// Load the Visualization API and the corechart package.
+		google.charts.load('current', {'packages':['corechart']});
+
+		// Set a callback to run when the Google Visualization API is loaded.
+		google.charts.setOnLoadCallback(drawChart);
+
+		// Callback that creates and populates a data table,
+		// instantiates the pie chart, passes in the data and
+		// draws it.
+
+		
+		function drawChart() {
+
+			// Create the data table.
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'ชื่อยี่ห้อ');
+			data.addColumn('number', 'จำนวนข้อมูลโดยรวม');
+			data.addColumn({type: 'string', role: 'style'});
+			data.addRows([
+				['จำนวนอาจารย์', <?= $count_row_teachers['totalTeacher']; ?>, 'red'],
+				['จำนวนเจ้าหน้าที่', <?= $count_row_officers['totalOfficer']; ?>, 'green'],
+				['จำนวนห้องเรียน', <?= $count_row_studentsclass['totalStudentClass']; ?>, 'blue'],
+				['จำนวนวิชา', <?= $count_row_subjects['totalSubject']; ?>, 'pink'],
+				['รายกาารส่งข้อสอบ', <?= $count_row_sent_exam['totalSentExam']; ?>, 'orange'],
+				['จำนวนรายรับข้อสอบ', <?= $count_row_take_exam['totalTakeExam']; ?>, 'yellow']
+			]);
+
+			// Set chart options
+			var options = {'title':'ยอดขายสมาร์ทโฟน',
+											'width':'auto',
+											'height':300,
+										//  'is3D': true,
+											'pieHole': 0.5,
+											'pieSliceText': 'value',
+											'fontSize': 16,
+											'legend': 'none',
+											'bar': {groupWidth: 30}};
+
+			// Instantiate and draw our chart, passing in some options.
+			var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+			chart.draw(data, options);
+		}
+
+
+	</script>
+
 </head>
 <body>
 	
@@ -58,6 +111,14 @@ $count_row_take_exam = mysqli_fetch_assoc($count_query_take_exam);
 	<div class="col py-3">
 		<h1>แผงควบคุม</h1>
 		<hr>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div id="chart_div"></div><br>
+				</div>
+			</div>
+		</div>
 
 		<div class="row">
 			<!-- MENU COUNT -->
