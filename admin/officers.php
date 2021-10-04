@@ -170,7 +170,7 @@ if(empty($_SESSION['officer'])) {
 					<div class="input-group mb-3">
 						<input type="text" class="form-control" name="search" placeholder="ค้นหาข้อมูล รหัสประจำตัว ชื่อ นามสกุล เบอร์โทร" aria-label="Recipient's username" aria-describedby="button-addon2">
 						<button class="btn btn-outline-secondary" type="submit" id="button-addon2">ค้นหาข้อมูล</button>
-						<a href="teachers.php" class="btn btn-outline-secondary" id="button-addon2">รีเฟรชข้อมูล</a>
+						<a href="officers.php" class="btn btn-outline-secondary" id="button-addon2">รีเฟรชข้อมูล</a>
 					</div>
 
 				</form>
@@ -199,6 +199,9 @@ if(empty($_SESSION['officer'])) {
 									$search_id = $_GET['search'];
 									$search_sql = "SELECT * FROM officers WHERE officer_id LIKE '%".$search_id."%' OR officer_fname LIKE '%".$search_id."%' OR officer_lname LIKE '%".$search_id."%' OR officer_tel LIKE '%".$search_id."%'";
 									$search_query = mysqli_query($conn, $search_sql);
+									if(mysqli_num_rows($search_query) == 0) {
+										echo '<tr class="text-center"><td colspan="5">ไม่พบข้อมูลในการค้นหา</td></tr>';
+									}
 									while($search_row = mysqli_fetch_assoc($search_query)) {
 
 									

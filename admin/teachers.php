@@ -210,6 +210,9 @@ if(empty($_SESSION['officer'])) {
 									$search_id = $_GET['search'];
 									$search_sql = "SELECT * FROM teachers WHERE teacher_id LIKE '%".$search_id."%' OR teacher_fname LIKE '%".$search_id."%' OR teacher_lname LIKE '%".$search_id."%' OR teacher_tel LIKE '%".$search_id."%'";
 									$search_query = mysqli_query($conn, $search_sql);
+									if(mysqli_num_rows($search_query) == 0) {
+										echo '<tr class="text-center"><td colspan="5">ไม่พบข้อมูลในการค้นหา</td></tr>';
+									}
 									while($search_row = mysqli_fetch_assoc($search_query)) {
 
 									
