@@ -115,11 +115,15 @@ if(empty($_SESSION['officer'])) {
 
 				<h5 class="text-center">ข้อมูลรายวิชา</h5>
 				<!-- Searching -->
-				<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="ค้นหาข้อมูล รหัสวิชา ชื่อวิชา" aria-label="Recipient's username" aria-describedby="button-addon2">
-					<button class="btn btn-outline-secondary" type="button" id="button-addon2">ค้นหาข้อมูล</button>
-				</div>
-				<!-- Searching -->
+				<form action="subjects.php?search" method="GET">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" name="search" placeholder="ค้นหาข้อมูล รหัสวิชา ชื่อวิชา" aria-label="Recipient's username" aria-describedby="button-addon2">
+						<button class="btn btn-outline-secondary" type="submit" id="button-addon2">ค้นหาข้อมูล</button>
+						<a href="subjects.php" class="btn btn-outline-secondary" id="button-addon2">รีเฟรชข้อมูล</a>
+					</div>
+
+				</form>
+		<!-- Searching -->
 				<div class="table-responsive">
 					<table class="table">
 						<thead>
@@ -139,6 +143,27 @@ if(empty($_SESSION['officer'])) {
 									echo '<tr>
 										<td class="text-center" colspan="4">ไม่พบข้อมูล</td>	
 									</tr>';
+								} else if(isset($_GET['search'])) {
+										$search_id = $_GET['search'];
+										$search_sql = "SELECT * FROM subjects WHERE sub_id LIKE '%".$search_id."%' OR sub_name LIKE '%".$search_id."%'";
+										$search_query = mysqli_query($conn, $search_sql);
+										while($search_row = mysqli_fetch_assoc($search_query)) {
+
+										
+									?>
+									<tr>
+										<td class="text-center"><?= $search_row['sub_id']; ?></td>
+										<td><?= $search_row['sub_name']; ?></td>
+										<td class="text-center"><?= $search_row['sub_credit']; ?></td>
+										<td colspan="2" class="text-center">
+											<a href="subjects.php?edit=<?= $search_row['sub_id']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+											<a href="controller/subjectDelete.php?id=<?= $search_row['sub_id']; ?>" onclick="return confirm('คุณแน่ใจใช่หรือไม่? ที่จะลบ <?= $search_row['sub_name']; ?> ออก')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+										</td>
+									</tr>
+
+
+									<?php
+									}
 								} else {
 
 								

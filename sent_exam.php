@@ -48,7 +48,7 @@ if(isset($_POST['sent_exam'])) {
 			if($query) {
 				echo '<script>
 				alert("ส่งข้อสอบเสร็จสิ้น");
-				window.location.href = "check_exam.php";
+				window.location.href = "myexam.php";
 				</script>';
 			} else {
 				echo "Failed please re-check your database";

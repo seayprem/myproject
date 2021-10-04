@@ -159,14 +159,18 @@ if(empty($_SESSION['officer'])) {
 		</form>
 		<?php } ?>
 
+		<!-- Searching -->
+		<form action="class.php?search" method="GET">
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" name="search" placeholder="ค้นหาข้อมูล รหัสประจำตัว ชื่อ นามสกุล เบอร์โทร" aria-label="Recipient's username" aria-describedby="button-addon2">
+				<button class="btn btn-outline-secondary" type="submit" id="button-addon2">ค้นหาข้อมูล</button>
+				<a href="class.php" class="btn btn-outline-secondary" id="button-addon2">รีเฟรชข้อมูล</a>
+			</div>
+
+		</form>
+		<!-- Searching -->
 
 
-		<!-- Searching -->
-		<div class="input-group mb-3">
-			<input type="text" class="form-control" placeholder="ค้นหาข้อมูล รหัสห้องเรียน รหัสวิชา" aria-label="Recipient's username" aria-describedby="button-addon2">
-			<button class="btn btn-outline-secondary" type="button" id="button-addon2">ค้นหาข้อมูล</button>
-		</div>
-		<!-- Searching -->
 		<div class="table-responsive">
 			<table class="table">
 				<thead>
@@ -187,6 +191,13 @@ if(empty($_SESSION['officer'])) {
 						echo '<tr>
 							<td class="text-center" colspan="5">ไม่พบข้อมูล</td>	
 						</tr>';
+					} else if (isset($_GET['search'])) {
+							$search_id = $_GET['search'];
+						
+						?>
+
+
+				<?php 
 					} else {
 
 					
