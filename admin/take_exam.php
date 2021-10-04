@@ -35,6 +35,17 @@ if(empty($_SESSION['officer'])) {
 		<h1>รายการรับข้อสอบ</h1>
 		<hr>
 
+		<!-- INFO  -->
+		<?php
+		if(isset($_GET['info'])) {
+			$info_id = $_GET['info'];
+			$info_sql = "SELECT * FROM take_exam INNER JOIN officers ON take_exam.officer_id = officers.officer_id INNER JOIN sent_exam ON take_exam.sent_no = sent_exam.sent_no WHERE take_no = '".$info_id."'";					 
+			$info_query = mysqli_query($conn, $sql);
+			$info_row = mysqli_fetch_assoc($info_query);
+		}
+		?>
+		<!-- INFO  -->
+
 		<!-- Searching -->
 		<form action="take_exam.php?search" method="GET">
 			<div class="input-group mb-3">
@@ -60,7 +71,7 @@ if(empty($_SESSION['officer'])) {
 				</thead>
 				<tbody>
 					<?php
-						$sql = "SELECT * FROM take_exam INNER JOIN officers ON take_exam.officer_id = officers.officer_id INNER JOIN sent_exam ON take_exam.sent_no = sent_exam.sent_no";					 
+						$sql = "SELECT * FROM take_exam INNER JOIN officers ON take_exam.officer_id = officers.officer_id INNER JOIN sent_exam ON take_exam.sent_no = sent_exam.sent_no WHERE sent_exam.sent_checked = 3";					 
 						$query = mysqli_query($conn, $sql);
 						while($row = mysqli_fetch_assoc($query)) {
 
