@@ -166,10 +166,14 @@ if(empty($_SESSION['officer'])) {
 				<h5 class="text-center">ข้อมูลเจ้าหน้าที่</h5>
 
 				<!-- Searching -->
-				<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="ค้นหาข้อมูล รหัสประจำตัว ชื่อ นามสกุล เบอร์โทร" aria-label="Recipient's username" aria-describedby="button-addon2">
-					<button class="btn btn-outline-secondary" type="button" id="button-addon2">ค้นหาข้อมูล</button>
-				</div>
+				<form action="officers.php?search" method="GET">
+					<div class="input-group mb-3">
+						<input type="text" class="form-control" name="search" placeholder="ค้นหาข้อมูล รหัสประจำตัว ชื่อ นามสกุล เบอร์โทร" aria-label="Recipient's username" aria-describedby="button-addon2">
+						<button class="btn btn-outline-secondary" type="submit" id="button-addon2">ค้นหาข้อมูล</button>
+						<a href="teachers.php" class="btn btn-outline-secondary" id="button-addon2">รีเฟรชข้อมูล</a>
+					</div>
+
+				</form>
 				<!-- Searching -->
 				<div class="table-responsive">
 					<table class="table">
@@ -191,6 +195,28 @@ if(empty($_SESSION['officer'])) {
 								echo '<tr>
 									<td class="text-center" colspan="5">ไม่พบข้อมูล</td>	
 								</tr>';
+							} else if(isset($_GET['search'])) {
+									$search_id = $_GET['search'];
+									$search_sql = "SELECT * FROM officers WHERE officer_id LIKE '%".$search_id."%' OR officer_fname LIKE '%".$search_id."%' OR officer_lname LIKE '%".$search_id."%' OR officer_tel LIKE '%".$search_id."%'";
+									$search_query = mysqli_query($conn, $search_sql);
+									while($search_row = mysqli_fetch_assoc($search_query)) {
+
+									
+								?>
+							<tr class="text-center">
+								<td><?= $search_row['officer_id']; ?></td>
+								<td><?= $search_row['officer_fname']; ?></td>
+								<td><?= $search_row['officer_lname']; ?></td>
+								<td><?= $search_row['officer_tel']; ?></td>
+								<td colspan="3">
+									<a href="officers.php?info=<?= $search_row['officer_id']; ?>" class="btn btn-secondary btn-sm"><i class="fas fa-info-circle"></i></a>
+									<a href="officers.php?edit=<?= $search_row['officer_id']; ?>" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a>
+									<a href="controller/officerDelete.php?id=<?= $search_row['officer_id']; ?>" onclick="return confirm('คุณแน่ใจใช่หรือไม่? ที่จะลบ <?= $search_row['officer_fname'] . ' ' . $row['officer_lname']; ?> ออกจากระบบ')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+								</td>
+							</tr>
+
+								<?php 
+								}
 							} else {
 
 							
