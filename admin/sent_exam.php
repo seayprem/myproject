@@ -55,7 +55,7 @@ if(empty($_SESSION['officer'])) {
 						<th>ปีการศึกษา</th>
 						<th>เวลาส่ง</th>
 						<th>สถานะการอนุมัติ</th>
-						<th colspan="2">การจัดการ</th>
+						<th colspan="3">การจัดการ</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -88,6 +88,7 @@ if(empty($_SESSION['officer'])) {
 								<td class="text-center"><?= $search_row['sent_checked']; ?></td>
 								<td colspan="2" class="text-center">
 									<a href="#" class="btn btn-sm btn-secondary">ข้อมูล</a>
+									<a href="#" onclick="return confirm('คุณแน่ใจใช่แล้วหรือไม่? ที่ต้องการรับข้อสอบ')"  class="btn btn-sm btn-secondary">รับข้อสอบ</a>
 									<a href="#" onclick="return confirm('คุณแน่ใจใช่แล้วหรือไม่? ที่ต้องการลบข้อมูลนี้')" class="btn btn-sm btn-danger">ลบ</a>
 								</td>
 							</tr>
