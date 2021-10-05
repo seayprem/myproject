@@ -2,7 +2,7 @@
 	<div class="container">
 		<a href="index.php" class="navbar-brand">
 			<!-- <img src="public/images/logo/rmuti2.png" height="64" alt=""> -->
-			<a href="index.php" class="navbar-brand">ระบบจัดการข้อสอบ</a>
+			<a href="index.php" class="navbar-brand">ระบบส่งข้อสอบในสาขา</a>
 		</a>
 		<!-- responsive -->
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,7 +17,7 @@
 				if(isset($_SESSION['officer'])) {
 				?>
 				<li class="nav-item">
-					<a href="#" class="nav-link"><i class="fas fa-user"></i> สวัสดีคุณ <?= $_SESSION['officer']; ?></a>
+					<a href="profile.php" class="nav-link"><i class="fas fa-user"></i> สวัสดีคุณ <?= $_SESSION['officer']; ?></a>
 				</li>
 				<li class="nav-item">
 					<a href="logout.php" class="nav-link"><i class="fas fa-sign-in-alt"></i> ออกจากระบบ</a>

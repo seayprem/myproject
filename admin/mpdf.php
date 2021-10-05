@@ -40,12 +40,12 @@ $mpdf = new \Mpdf\Mpdf([
 
 
 
-$content = "<h3 style='text-align: center;'>รายการรับข้อสอบ</h3>";
+$content = "<h1 style='text-align: center;'>รายการรับข้อสอบ</h1>";
 
 $sql = "SELECT * FROM take_exam";
 $query = mysqli_query($conn, $sql);
 if(mysqli_num_rows($query) == 0) {
-	echo "ไม่พบรายการ";
+	$content .= "<h2 align='center'>ไม่พบรายการรับข้อสอบ</h2>";
 }
 while($row = mysqli_fetch_assoc($query)) {
 	$content .= "<table border='1' style='border-collapse: collapse;' width='100%'>";

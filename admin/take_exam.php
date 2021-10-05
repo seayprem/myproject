@@ -102,7 +102,7 @@ if(empty($_SESSION['officer'])) {
 		<!-- Searching -->
 		<form action="take_exam.php?search" method="GET">
 			<div class="input-group mb-3">
-				<input type="text" class="form-control" name="search" placeholder="ค้นหาข้อมูล รหัสประจำตัว ชื่อ นามสกุล เบอร์โทร" aria-label="Recipient's username" aria-describedby="button-addon2">
+				<input type="text" class="form-control" name="search" placeholder="ค้นหาข้อมูล รหัสประจำตัว ชื่อ นามสกุล เบอร์โทร" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 				<button class="btn btn-outline-secondary" type="submit" id="button-addon2">ค้นหาข้อมูล</button>
 				<a href="take_exam.php" class="btn btn-outline-secondary" id="button-addon2">รีเฟรชข้อมูล</a>
 			</div>
@@ -124,7 +124,7 @@ if(empty($_SESSION['officer'])) {
 				</thead>
 				<tbody>
 					<?php
-						$sql = "SELECT * FROM take_exam INNER JOIN officers ON take_exam.officer_id = officers.officer_id INNER JOIN sent_exam ON take_exam.sent_no = sent_exam.sent_no INNER JOIN teachers ON sent_exam.teacher_id = teachers.teacher_id INNER JOIN subjects ON sent_exam.sub_id = subjects.sub_id WHERE sent_exam.sent_checked = 3";					 
+						$sql = "SELECT * FROM take_exam INNER JOIN officers ON take_exam.officer_id = officers.officer_id INNER JOIN sent_exam ON take_exam.sent_no = sent_exam.sent_no INNER JOIN teachers ON sent_exam.teacher_id = teachers.teacher_id INNER JOIN subjects ON sent_exam.sub_id = subjects.sub_id WHERE sent_exam.sent_checked = 3 ORDER BY take_exam.take_no DESC";					 
 						$query = mysqli_query($conn, $sql);
 						if(mysqli_num_rows($query) == 0) {
 							echo '<tr><td colspan="7" class="text-center">ไม่พบข้อมูล</td></tr>';
@@ -150,9 +150,9 @@ if(empty($_SESSION['officer'])) {
 								<td class="text-center"><?= $search_row['sent_year']; ?></td>
 								<td class="text-center"><?= $search_row['take_date']; ?></td>
 								<td colspan="3" class="text-center">
-									<a href="take_exam.php?info=<?= $search_row['take_no']; ?>" class="btn btn-secondary btn-sm">ดูข้อมูล</a>
+									<a href="take_exam.php?info=<?= $search_row['take_no']; ?>" class="btn btn-secondary btn-sm"><i class="fas fa-info-circle"></i></a>
 									<a href="../assets/files/<?= $search_row['sent_files']; ?>" target="_blank" class="btn btn-success btn-sm">ปริ้นข้อสอบ</a>
-									<a href="controller/takeexamDelete.php?id=<?= $search_row['take_no']; ?>" onclick="return confirm('ยืนยันที่จะลบใช่หรือไม่?')" class="btn btn-danger btn-sm">ลบ</a>
+									<a href="controller/takeexamDelete.php?id=<?= $search_row['take_no']; ?>" onclick="return confirm('ยืนยันที่จะลบใช่หรือไม่?')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
 								</td>
 							</tr>
 							<?php 
@@ -174,9 +174,9 @@ if(empty($_SESSION['officer'])) {
 						<td class="text-center"><?= $row['sent_year']; ?></td>
 						<td class="text-center"><?= $row['take_date']; ?></td>
 						<td colspan="3" class="text-center">
-							<a href="take_exam.php?info=<?= $row['take_no']; ?>" class="btn btn-secondary btn-sm">ดูข้อมูล</a>
+							<a href="take_exam.php?info=<?= $row['take_no']; ?>" class="btn btn-secondary btn-sm"><i class="fas fa-info-circle"></i></a>
 							<a href="../assets/files/<?= $row['sent_files']; ?>" target="_blank" class="btn btn-success btn-sm">ปริ้นข้อสอบ</a>
-							<a href="controller/takeexamDelete.php?id=<?= $row['take_no']; ?>" onclick="return confirm('ยืนยันที่จะลบใช่หรือไม่?')" class="btn btn-danger btn-sm">ลบ</a>
+							<a href="controller/takeexamDelete.php?id=<?= $row['take_no']; ?>" onclick="return confirm('ยืนยันที่จะลบใช่หรือไม่?')" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
 						</td>
 					</tr>
 					<?php }

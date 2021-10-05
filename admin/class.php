@@ -162,7 +162,7 @@ if(empty($_SESSION['officer'])) {
 		<!-- Searching -->
 		<form action="class.php?search" method="GET">
 			<div class="input-group mb-3">
-				<input type="text" class="form-control" name="search" placeholder="ค้นหาข้อมูล รหัสประจำตัว ชื่อ นามสกุล เบอร์โทร" aria-label="Recipient's username" aria-describedby="button-addon2">
+				<input type="text" class="form-control" name="search" placeholder="ค้นหาข้อมูล รหัสประจำตัว ชื่อ นามสกุล เบอร์โทร" aria-label="Recipient's username" aria-describedby="button-addon2" required>
 				<button class="btn btn-outline-secondary" type="submit" id="button-addon2">ค้นหาข้อมูล</button>
 				<a href="class.php" class="btn btn-outline-secondary" id="button-addon2">รีเฟรชข้อมูล</a>
 			</div>

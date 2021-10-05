@@ -81,7 +81,6 @@ $counts_unaccept_rows = mysqli_fetch_assoc($counts_unaccept_query);
 								<th>หมายเลขลำดับข้อสอบ</th>
 								<th>ชื่อผู้ส่งข้อสอบ</th>
 								<th>รายวิชาข้อสอบ</th>
-								<th>เวลาที่ส่ง</th>
 								<th>
 									จัดการข้อมูล
 								</th>
@@ -108,7 +107,6 @@ $counts_unaccept_rows = mysqli_fetch_assoc($counts_unaccept_query);
 								<td class="text-center"><?= $list_sent_exam_rows['sent_no']; ?></td>
 								<td><?= $list_sent_exam_rows['teacher_fname'] . ' ' . $list_sent_exam_rows['teacher_lname']; ?></td>
 								<td class="text-center"><?= $list_sent_exam_rows['sub_name']; ?></td>
-								<td class="text-center">13:00</td>
 								<td class="text-center">
 									<a href="check_exam_detail.php?infodetail=<?= $list_sent_exam_rows['sent_no']; ?>" class="btn btn-secondary"><i class="fas fa-info-circle"></i></a>
 								</td>
@@ -127,7 +125,6 @@ $counts_unaccept_rows = mysqli_fetch_assoc($counts_unaccept_query);
 								<th>หมายเลขลำดับข้อสอบ</th>
 								<th>ชื่อผู้ส่งข้อสอบ</th>
 								<th>รายวิชาข้อสอบ</th>
-								<th>เวลาที่ส่ง</th>
 								<th>
 									จัดการข้อมูล
 								</th>
@@ -155,7 +152,6 @@ $counts_unaccept_rows = mysqli_fetch_assoc($counts_unaccept_query);
 								<td class="text-center"><?= $accept_row['sent_no']; ?></td>
 								<td><?= $accept_row['teacher_fname'] . ' ' . $accept_row['teacher_lname']; ?></td>
 								<td class="text-center"><?= $accept_row['sub_name']; ?></td>
-								<td class="text-center">13:00</td>
 								<td class="text-center">
 									<a href="#" class="btn btn-secondary">ดูข้อมูล</a>
 								</td>
@@ -177,7 +173,6 @@ $counts_unaccept_rows = mysqli_fetch_assoc($counts_unaccept_query);
 								<th>หมายเลขลำดับข้อสอบ</th>
 								<th>ชื่อผู้ส่งข้อสอบ</th>
 								<th>รายวิชาข้อสอบ</th>
-								<th>เวลาที่ส่ง</th>
 								<th>
 									จัดการข้อมูล
 								</th>
@@ -203,7 +198,6 @@ $counts_unaccept_rows = mysqli_fetch_assoc($counts_unaccept_query);
 								<td class="text-center"><?= $unaccept_row['sent_no']; ?></td>
 								<td><?= $unaccept_row['teacher_fname'] . ' ' . $unaccept_row['teacher_lname']; ?></td>
 								<td class="text-center"><?= $unaccept_row['sub_name'] ?></td>
-								<td class="text-center">13:00</td>
 								<td class="text-center">
 									<a href="#" class="btn btn-secondary">ดูข้อมูล</a>
 								</td>

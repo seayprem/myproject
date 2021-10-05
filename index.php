@@ -144,7 +144,7 @@ $position = $_SESSION['position'];
 						<div class="col-md-6">
 							<div class="mb-3">
 								<label class="form-label">กรุณาเลือกเวลาสอบ</label>
-								<input type="time" name="sent_time_exam" class="form-control">
+								<input type="text" name="sent_time_exam" class="form-control" placeholder="เช่น 14:00">
 							</div>
 						</div>
 					</div>

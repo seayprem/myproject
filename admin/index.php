@@ -37,6 +37,12 @@ $count_query_take_exam = mysqli_query($conn, $count_sql_take_exam);
 $count_row_take_exam = mysqli_fetch_assoc($count_query_take_exam);
 
 
+// COUNT ASSOCIATE
+$count_associate_sql = "SELECT COUNT(*) AS totalAssociate FROM associate";
+$count_associate_query = mysqli_query($conn, $count_associate_sql);
+$count_associate_row = mysqli_fetch_assoc($count_associate_query);
+
+
 // Data while loop
 
 ?>
@@ -76,6 +82,7 @@ $count_row_take_exam = mysqli_fetch_assoc($count_query_take_exam);
 				['จำนวนอาจารย์', <?= $count_row_teachers['totalTeacher']; ?>, 'red'],
 				['จำนวนเจ้าหน้าที่', <?= $count_row_officers['totalOfficer']; ?>, 'green'],
 				['จำนวนห้องเรียน', <?= $count_row_studentsclass['totalStudentClass']; ?>, 'blue'],
+				['จำนวนลงทะเบียนกลุ่มเรียน', <?= $count_associate_row['totalAssociate']; ?>, 'gray'],
 				['จำนวนวิชา', <?= $count_row_subjects['totalSubject']; ?>, 'pink'],
 				['รายกาารส่งข้อสอบ', <?= $count_row_sent_exam['totalSentExam']; ?>, 'orange'],
 				['จำนวนรายรับข้อสอบ', <?= $count_row_take_exam['totalTakeExam']; ?>, 'yellow']
@@ -149,6 +156,17 @@ $count_row_take_exam = mysqli_fetch_assoc($count_query_take_exam);
 					<div class="card-body">
 						<h5 class="card-title text-center"><i class="fas fa-chalkboard-teacher"></i> จำนวนห้องเรียน</h5>
 						<h1 class="card-text text-center"><?= $count_row_studentsclass['totalStudentClass']; ?></h1>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-md-4">
+				<div class="card text-white bg-is mb-3">
+					<div class="card-header">ลงทะเบียนกลุ่มเรียน</div>
+					<div class="card-body">
+						<h5 class="card-title text-center"><i class="fas fa-address-card"></i> จำนวนลงทะเบียนกลุ่มเรียน</h5>
+						<h1 class="card-text text-center"><?= $count_associate_row['totalAssociate']; ?></h1>
 					</div>
 				</div>
 			</div>

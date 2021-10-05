@@ -63,7 +63,7 @@ $counts_rows = mysqli_fetch_assoc($counts_query);
 					?>
 					
 					<?php 
-						$sql = "SELECT sent_exam.sent_no, subjects.sub_name, sent_exam.sent_checked FROM sent_exam LEFT JOIN subjects ON sent_exam.sub_id = subjects.sub_id WHERE sent_exam.teacher_id = '".$_SESSION['ids']."'";
+						$sql = "SELECT sent_exam.sent_no, subjects.sub_name, sent_exam.sent_checked FROM sent_exam LEFT JOIN subjects ON sent_exam.sub_id = subjects.sub_id WHERE sent_exam.teacher_id = '".$_SESSION['ids']."' ORDER BY sent_exam.sent_no DESC";
 						$query = mysqli_query($conn, $sql);
 						while($row = mysqli_fetch_assoc($query)) {
 					?>
