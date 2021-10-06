@@ -10,7 +10,7 @@ if(!empty($_SESSION['login'])) {
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>ระบบส่งข้อสอบในสาขา</title>
+	<title>เข้าสู่ระบบ - ระบบส่งข้อสอบในสาขา</title>
 	<!-- CSS -->
 	<?php include('includes/css.inc.php'); ?>
 	<!-- JS -->

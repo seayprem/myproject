@@ -34,7 +34,7 @@ $counts_unaccept_rows = mysqli_fetch_assoc($counts_unaccept_query);
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>หัวหน้าโปรแกรมวิชา</title>
+	<title>ตรวจข้อสอบ - ระบบส่งข้อสอบในสาขา</title>
 
 
 	<style>

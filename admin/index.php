@@ -52,7 +52,7 @@ $count_associate_row = mysqli_fetch_assoc($count_associate_query);
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>ADMIN</title>
+	<title>แผงควบคุม - ระบบส่งข้อสอบในสาขา</title>
 	<!-- CSS -->
 	<?php include('includes/css.inc.php'); ?>
 	<!-- Javascript -->
