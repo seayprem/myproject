@@ -41,6 +41,12 @@ $mpdf = new \Mpdf\Mpdf([
 
 
 $content = "<h1 style='text-align: center;'>รายการรับข้อสอบ</h1>";
+$content .= "<table border='1' style='border-collapse: collapse;' width='100%'>";
+$content .= "<tr>";
+$content .= "<th>ลำดับข้อสอบ</th>";
+$content .= "<th>รหัสเจ้าหน้าที่</th>";
+$content .= "<th>เวลารับข้อสอบ</th>";
+$content .= "</tr>";
 
 $sql = "SELECT * FROM take_exam";
 $query = mysqli_query($conn, $sql);
@@ -48,20 +54,15 @@ if(mysqli_num_rows($query) == 0) {
 	$content .= "<h2 align='center'>ไม่พบรายการรับข้อสอบ</h2>";
 }
 while($row = mysqli_fetch_assoc($query)) {
-	$content .= "<table border='1' style='border-collapse: collapse;' width='100%'>";
-	$content .= "<tr>";
-	$content .= "<th>ลำดับข้อสอบ</th>";
-	$content .= "<th>รหัสเจ้าหน้าที่</th>";
-	$content .= "<th>เวลารับข้อสอบ</th>";
-	$content .= "</td>";
 	$content .= "<tr>";
 	$content .= "<td style='text-align: center;'>".$row['sent_no']."</td>";
 	$content .= "<td>".$row['officer_id']."</td>";
 	$content .= "<td>".$row['take_date']."</td>";
-	$content .= "</td>";
-	$content .= "</table>";
+	$content .= "</tr>";
 
 }
+
+$content .= "</table>";
 
 
 $mpdf->WriteHTML($content);
