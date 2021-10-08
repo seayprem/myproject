@@ -19,7 +19,7 @@ if(isset($_POST['login'])) {
 		$_SESSION['expire'] = $_SESSION['start'] + (30 * 60);
 		header("Location: ../index.php");
 	} else {
-		header("Location: ../login.php");
+		echo '<script>alert("ชื่อผู้ใช้หรือรหัสผ่านผิด"); window.history.back();</script>';
 	}
 }
 ?>
