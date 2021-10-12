@@ -73,9 +73,17 @@ if(empty($_SESSION['officer'])) {
 					<label class="form-label">เบอร์โทร</label>
 					<input type="text" name="teacher_tel" class="form-control" placeholder="กรุณาป้อนเบอร์โทร" required>
 				</div>
-				<div class="mb-3">
+				<!-- <div class="mb-3">
 					<label class="form-label">ตำแหน่ง</label>
 					<input type="text" name="teacher_position" class="form-control" placeholder="กรุณาป้อนตำแหน่ง" required>
+				</div> -->
+				<div class="mb-3">
+					<label class="form-label">ตำแหน่ง</label>
+					<select name="teacher_position" class="form-select">
+						<option selected disabled>--- กรุณาเลือกตำแหน่ง ---</option>
+						<option value="หัวหน้าโปรแกรมวิชา">หัวหน้าโปรแกรมวิชา</option>
+						<option value="อาจารย์">อาจารย์</option>
+					</select>
 				</div>
 				<div class="d-grid gap-2 mt-2">
 					<input type="submit" name="add" class="btn btn-is" value="เพิ่มข้อมูล">
@@ -138,7 +146,12 @@ if(empty($_SESSION['officer'])) {
 				</div>
 				<div class="mb-3">
 					<label class="form-label">ตำแหน่ง</label>
-					<input type="text" name="teacher_position" class="form-control" placeholder="กรุณาป้อนตำแหน่ง" value="<?= $edit_row['teacher_position']; ?>" required>
+					<select name="teacher_position" class="form-select">
+						<option selected value="<?= $edit_row['teacher_position']; ?>"><?= $edit_row['teacher_position'] ?></option>
+						<option disabled>--- กรุณาเลือกตำแหน่ง ---</option>
+						<option value="หัวหน้าโปรแกรมวิชา">หัวหน้าโปรแกรมวิชา</option>
+						<option value="อาจารย์">อาจารย์</option>
+					</select>
 				</div>
 				<div class="d-grid gap-2 mt-2">
 					<input type="submit" name="edit" class="btn btn-is" value="แก้ไขข้อมูล">
